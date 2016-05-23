@@ -60,36 +60,4 @@ ftrlprox <- function(fx, dat, lambda1, lambda2, alpha, beta=1, num_epochs=1,
 }
 
 
-##------------------------------------------------------------------------------
-#' @export
-##------------------------------------------------------------------------------
-predict.ftrlprox <- function(obj, newdata=NULL, type="response") {
-  dep_var <- all.vars(obj$fx[[2]])
-  newdata[[dep_var]] <- 0
 
-  X <- model.matrix(obj$fx, newdata)
-
-  out <- .C("lognet_predict",
-            X=as.double(X),
-            theta=as.double(obj$theta),
-            y=numeric(nrow(X)),
-            m=as.integer(nrow(X)),
-            n=as.integer(ncol(X)))
-
-  return(out$y)
-}
-
-##------------------------------------------------------------------------------
-#' @export
-##------------------------------------------------------------------------------
-print.ftrlprox <- function(obj, digits=NULL, zero.print=".") {
-  require(Matrix)
-  rn <- names(obj$theta)
-  theta <- Matrix(obj$theta, sparse=T)
-  rownames(theta) <- rn
-
-  cat("\nCoefficients:")
-  printSpMatrix(theta, digits=digits, zero.print=zero.print)
-  cat("\n")
-  cat(sprintf("AIC: %d\n", obj$aic))
-}
