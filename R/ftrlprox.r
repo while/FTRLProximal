@@ -1,5 +1,9 @@
 ##------------------------------------------------------------------------------
-#' Elastic net regression
+#' FTRL Proximal
+#' 
+#' Online elastic net regression using the FTRL Proximal algorithm for training.
+#'
+#' Test text
 #'
 #' @param fx modeling formula
 #' @param dat data.frame containing features and dependent variable

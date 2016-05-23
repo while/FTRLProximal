@@ -3,4 +3,5 @@
 S3method(predict,ftrlprox)
 S3method(print,ftrlprox)
 export(ftrlprox)
+import(Matrix)
 useDynLib(FTRLProximal)

@@ -8,6 +8,7 @@
 #' @param zero.print the symbol to use in place of zeros
 #' 
 #' @author Vilhelm von Ehrenheim
+#' @import Matrix
 #' @export
 ##------------------------------------------------------------------------------
 print.ftrlprox <- function(obj, digits=NULL, zero.print=".") {

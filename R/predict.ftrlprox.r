@@ -10,6 +10,7 @@
 #' @return an array containing the predictions
 #' 
 #' @author Vilhelm von  Ehrenheim
+#' @useDynLib FTRLProximal
 #' @export
 ##------------------------------------------------------------------------------
 predict.ftrlprox <- function(obj, newdata=NULL, type="response") {
