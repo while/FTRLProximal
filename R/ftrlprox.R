@@ -11,7 +11,7 @@
 #' @return ftrlprox model object
 #' @author Vilhelm von Ehrenheim
 #'
-#' @useDynLib ftrlprox
+#' @useDynLib FTRLProximal
 #' @export
 ##------------------------------------------------------------------------------
 ftrlprox <- function(fx, dat, lambda1, lambda2, alpha, beta=1, num_epochs=1,
@@ -64,7 +64,7 @@ ftrlprox <- function(fx, dat, lambda1, lambda2, alpha, beta=1, num_epochs=1,
 #' @export
 ##------------------------------------------------------------------------------
 predict.ftrlprox <- function(obj, newdata=NULL, type="response") {
-  dep_var <- all.vars(fx[[2]])
+  dep_var <- all.vars(obj$fx[[2]])
   newdata[[dep_var]] <- 0
 
   X <- model.matrix(obj$fx, newdata)

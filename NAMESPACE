@@ -3,4 +3,4 @@
 S3method(predict,ftrlprox)
 S3method(print,ftrlprox)
 export(ftrlprox)
-useDynLib(ftrlprox)
+useDynLib(FTRLProximal)
