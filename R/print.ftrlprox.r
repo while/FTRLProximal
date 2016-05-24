@@ -3,7 +3,7 @@
 #' 
 #' Print a text represenation of the ftrlprox model.
 #' 
-#' @param obj The model object to print
+#' @param x The model object to print
 #' @param digits the number of digits display in printout.
 #' @param zero.print the symbol to use in place of zeros
 #' 
@@ -11,10 +11,9 @@
 #' @import Matrix
 #' @export
 ##------------------------------------------------------------------------------
-print.ftrlprox <- function(obj, digits=NULL, zero.print=".") {
-  require(Matrix)
-  rn <- names(obj$theta)
-  theta <- Matrix(obj$theta, sparse=T)
+print.ftrlprox <- function(x, digits=NULL, zero.print=".", ...) {
+  rn <- names(x$theta)
+  theta <- Matrix(x$theta, sparse=T)
   rownames(theta) <- rn
 
   cat("\nCoefficients:")

@@ -4,10 +4,10 @@
 \alias{print.ftrlprox}
 \title{Print a ftrlprox model}
 \usage{
-\method{print}{ftrlprox}(obj, digits = NULL, zero.print = ".")
+\method{print}{ftrlprox}(x, digits = NULL, zero.print = ".", ...)
 }
 \arguments{
-\item{obj}{The model object to print}
+\item{x}{The model object to print}
 
 \item{digits}{the number of digits display in printout.}
 

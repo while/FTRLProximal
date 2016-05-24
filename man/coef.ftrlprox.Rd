@@ -4,7 +4,7 @@
 \alias{coef.ftrlprox}
 \title{coef.ftrlprox}
 \usage{
-\method{coef}{ftrlprox}(object)
+\method{coef}{ftrlprox}(object, ...)
 }
 \arguments{
 \item{object}{The model object}

@@ -11,7 +11,7 @@
 #' @author Vilhelm von Ehrenheim
 #' @export
 ##------------------------------------------------------------------------------
-coef.ftrlprox <- function(object) {
+coef.ftrlprox <- function(object, ...) {
   object$theta
 }
 
