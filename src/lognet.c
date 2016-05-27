@@ -65,27 +65,37 @@ void lognet_ftrlprox(double *X, double *theta, double *y, unsigned int *m,
         }
 
         // Initialize z and nn
-        double z[*n];
-        double nn[*n];
+        double *z = malloc((*n)*sizeof(double));
+        double *nn = malloc((*n)*sizeof(double));
+        double *g = malloc((*n)*sizeof(double));
+        double *sig = malloc((*n)*sizeof(double));
+        double *x = malloc((*n)*sizeof(double));
+
         for (int i = 0; i < (*n); i++) {
           z[i]  = 0.;
           nn[i] = 0.;
         }
 
         for (int t = 0; t < ((*m)*(*num_epochs)); t++) {
-                double x[*n];
-                list_t *idx = list();
+                node_t *l1 = malloc(sizeof(node_t));
+                l1->next = NULL;
+                node_t *li = l1;
 
                 // Extract feature vector and indexes where xi is not 0
                 // as those will not help update the coefficients
                 for (int i = 0; i < (*n); i++) {
                         x[i] = X[(*m)*i + (t%(*m))];
-                        if (x[i] != 0.) append(idx, i);
+                        if (x[i] != 0.) {
+                                li->val = i;
+                                li->next = malloc(sizeof(node_t));
+                                li = li->next;
+                                li->next = NULL;
+                        }
                 }
 
                 // Loop over non zero indices
-                node_t *li = idx->first;
-                while(li != NULL) {
+                li = l1;
+                while(li->next != NULL) {
                         // move list pointer
                         int i = li->val;
                         li = li->next;
@@ -104,10 +114,8 @@ void lognet_ftrlprox(double *X, double *theta, double *y, unsigned int *m,
                 //J[t] = -y[t%(*m)]*log(yhat) - (1. - y[t%(*m)])*log(1. - yhat);
 
                 // Loop over list again to update gradient and learning rate 
-                double g[*n];
-                double sig[*n];
-                li = idx->first;
-                while(li != NULL) {
+                li = l1;
+                while(li->next != NULL) {
                         int i = li->val;
                         li = li->next;
 
@@ -117,50 +125,19 @@ void lognet_ftrlprox(double *X, double *theta, double *y, unsigned int *m,
                         nn[i] += SQR(g[i]);
                 }
 
-                erase(idx);
+                // Free index list
+                li = l1;
+                while(li != NULL) {
+                        l1 = li->next;
+                        free(li);
+                        li = l1;
+                }
         }
+
+        // Free up used mem
+        free(z);
+        free(nn);
+        free(g);
+        free(sig);
+        free(x);
 }
-
-int main() 
-{
-        double X[] = {
-                1, -0.474208, -2.295092,
-                1,  0.247492, -1.194799,
-                1,  0.204377, -1.191244,
-                1,  0.803192,  1.562826,
-                1, -0.678238, -1.372498,
-                1, -2.878567, -1.902228,
-                1, -2.100316, -0.543889,
-                1, -0.201629, -0.756559,
-                1, -1.525376, -2.040805,
-                1, -2.752720,  0.112114
-        };
-
-        double theta[] = {0., 0., 0.};
-        double y[] = {
-                1.,
-                1.,
-                1.,
-                0.,
-                1.,
-                1.,
-                1.,
-                1.,
-                1.,
-                1.
-        };
-        unsigned int m = 10;
-        unsigned int n = 3;
-        double J[] = {0.};
-        unsigned int num_epochs = 1000;
-        double alpha = 1.;
-        double beta = 1.;
-        double lambda1 = 0.;
-        double lambda2 = 0.;
-        int loss = 0;
-
-        lognet_ftrlprox(X, theta, y, &m, &n, J, &num_epochs,
-                        &alpha, &beta, &lambda1, &lambda2, &loss);
-        print_matrix(theta, 1, n);
-}
-
