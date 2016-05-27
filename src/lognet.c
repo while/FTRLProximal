@@ -121,3 +121,46 @@ void lognet_ftrlprox(double *X, double *theta, double *y, unsigned int *m,
         }
 }
 
+int main() 
+{
+        double X[] = {
+                1, -0.474208, -2.295092,
+                1,  0.247492, -1.194799,
+                1,  0.204377, -1.191244,
+                1,  0.803192,  1.562826,
+                1, -0.678238, -1.372498,
+                1, -2.878567, -1.902228,
+                1, -2.100316, -0.543889,
+                1, -0.201629, -0.756559,
+                1, -1.525376, -2.040805,
+                1, -2.752720,  0.112114
+        };
+
+        double theta[] = {0., 0., 0.};
+        double y[] = {
+                1.,
+                1.,
+                1.,
+                0.,
+                1.,
+                1.,
+                1.,
+                1.,
+                1.,
+                1.
+        };
+        unsigned int m = 10;
+        unsigned int n = 3;
+        double J[] = {0.};
+        unsigned int num_epochs = 1000;
+        double alpha = 1.;
+        double beta = 1.;
+        double lambda1 = 0.;
+        double lambda2 = 0.;
+        int loss = 0;
+
+        lognet_ftrlprox(X, theta, y, &m, &n, J, &num_epochs,
+                        &alpha, &beta, &lambda1, &lambda2, &loss);
+        print_matrix(theta, 1, n);
+}
+
