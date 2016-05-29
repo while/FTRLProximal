@@ -15,7 +15,7 @@ test_that("Class is ftrlprox", {
           expect_is(mdl, "ftrlprox")
 })
 
-test_that("Correct parameters", {
+test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
@@ -24,7 +24,7 @@ test_that("Correct parameters", {
           expect_equal(coefs[3], -1.69555552563667)
 })
 
-test_that("Correct parameter names", {
+test_that("Parameter names", {
           expect_equal(names(mdl$theta), c("(Intercept)", "A", "B"))
 })
 
