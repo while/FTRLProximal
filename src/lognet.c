@@ -10,9 +10,6 @@
 
 #define DEBUG 0
 
-#define NUM_THREADS 10000
-#define BLOCK_WIDTH 100
-
 #define SQR(x)  ((x)*(x))
 #define ABS(x)  (((x) < 0) ? -(x) : (x))
 #define SGN(x)  (((x) < 0) ? -1. : 1.)
