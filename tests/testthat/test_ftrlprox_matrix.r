@@ -33,3 +33,22 @@ test_that("Parameter names", {
 test_that("Target levels", {
           expect_equal(mdl$levels, c("G", "B"))
 })
+
+
+test_that("Saving loss", {
+          mdl <- ftrlprox(X, dat$y, alpha=1, beta=1,
+                          lambda1=0, lambda2=0,
+                          save_loss=TRUE)
+
+          expect_equal(length(mdl$J), nrow(X))
+          expect_true(all(mdl$J != 0.0))
+})
+
+test_that("Saving loss many epochs", {
+          mdl <- ftrlprox(X, dat$y, alpha=1, beta=1,
+                          lambda1=0, lambda2=0,
+                          save_loss=TRUE, num_epochs=10)
+
+          expect_equal(length(mdl$J), 10*nrow(X))
+          expect_true(all(mdl$J != 0.0))
+})

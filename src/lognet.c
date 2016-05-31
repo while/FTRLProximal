@@ -52,7 +52,7 @@ void lognet_predict(double *X, double *theta, double *yhat, int *m, int *n)
 void lognet_ftrlprox(double *X, double *theta, double *y, unsigned int *m, 
                      unsigned int *n, double *J, unsigned int *num_epochs,
                      double *alpha, double *bnn, double *lambda1,
-                     double *lambda2, unsigned int *loss)
+                     double *lambda2, unsigned int *save_loss)
 
 {
         if (DEBUG)  {
@@ -108,7 +108,9 @@ void lognet_ftrlprox(double *X, double *theta, double *y, unsigned int *m,
                 lognet_predict(x, theta, &yhat, &m1, n);
 
                 // Save cost function
-                //J[t] = -y[t%(*m)]*log(yhat) - (1. - y[t%(*m)])*log(1. - yhat);
+                if (*save_loss) {
+                        J[t] = -y[t%(*m)]*log(yhat) - (1. - y[t%(*m)])*log(1. - yhat);
+                }
 
                 // Loop over list again to update gradient and learning rate 
                 li = l1;
