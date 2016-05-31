@@ -30,28 +30,23 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
   # Make factor into numeric 0 and 1
   ynum <- as.numeric(y) - 1  
 
-  is_sparse=FALSE
-  ix=jx=NULL
+  is_sparse <- FALSE
+  ix <- jx <- NULL
   if (inherits(x,"sparseMatrix")) {
-    is_sparse=TRUE
+    is_sparse <- TRUE
     x <- as(x,"CsparseMatrix")
     x <- as(x,"dgCMatrix")
-    ix <- as.integer(x@p)
-    jx <- as.integer(x@i)
-    m <- as.integer(nrow(x))
-    n <- as.integer(ncol(x))
-    x <- as.double(x@x)
   }
 
   out <- if(is_sparse) {
           .C("splognet_ftrlprox",
-             X=x,
-             ix=ix,
-             jx=jx,
+             X=as.double(x@x),
+             ix=as.integer(x@p),
+             jx=as.integer(x@i),
              theta=double(n),
              y=as.double(ynum),
-             m=m,
-             n=n,
+             m=as.integer(nrow(x)),
+             n=as.integer(ncol(x)),
              J=numeric(num_epochs),
              num_epochs=as.integer(num_epochs),
              alpha=as.double(alpha),

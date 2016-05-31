@@ -46,12 +46,10 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
         double *g = malloc((*n)*sizeof(double));
         double *sig = malloc((*n)*sizeof(double));
         double *x = malloc((*n)*sizeof(double));
-        int *ii = malloc((*n)*sizeof(int));
 
         for (int i = 0; i < (*n); i++) {
           z[i]  = 0.;
           nn[i] = 0.;
-          ii[i] = ix[i];
         }
 
         // Total number of non zero elements
@@ -66,24 +64,27 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
                 // Extract feature vector and indexes where xi is not 0
                 // as those will not help update the coefficients
                 for (int i = 0; i < (*n); i++) {
-                        printf("ii=%d, jx=%d, t=%d\n", ii[i], jx[ii[i]], t);
-                        if (jx[ii[i]] == t) {
-                                x[i] = X[ii[i]];
+                        // a bit of index fiddeling is needed hereto handle
+                        // sparse matrices
+                        if (jx[ix[i]] == t) {
+                                x[i] = X[ix[i]];
                                 li->val = i;
                                 li->next = malloc(sizeof(node_t));
                                 li = li->next;
                                 li->next = NULL;
-                                ii[i]++;
+                                ix[i]++;
                         } else {
                                 x[i] = 0.;
                         }
                 }
 
-                printf("x = [");
-                for (int i = 0; i < (*n); i++) {
-                        printf(" %.3f ", x[i]);
+                if (DEBUG) {
+                        printf("x = [");
+                        for (int i = 0; i < (*n); i++) {
+                                printf(" %.3f ", x[i]);
+                        }
+                        printf("]\n");
                 }
-                printf("]\n");
 
                 // Loop over non zero indices
                 li = l1;
@@ -132,6 +133,5 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
         free(g);
         free(sig);
         free(x);
-        free(ii);
 }
 
