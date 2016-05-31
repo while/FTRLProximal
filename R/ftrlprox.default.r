@@ -43,7 +43,7 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
              X=as.double(x@x),
              ix=as.integer(x@p),
              jx=as.integer(x@i),
-             theta=double(n),
+             theta=double(ncol(x)),
              y=as.double(ynum),
              m=as.integer(nrow(x)),
              n=as.integer(ncol(x)),
