@@ -7,6 +7,7 @@
 #' @param object The model object to use for prediction.
 #' @param newdata the new dataset to predict the outcome of.
 #' @param type the type of response.
+#' @param ... additional args
 #' @return an array containing the predictions
 #' 
 #' @author Vilhelm von  Ehrenheim

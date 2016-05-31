@@ -6,6 +6,7 @@
 #' @param x The model object to print
 #' @param digits the number of digits display in printout.
 #' @param zero.print the symbol to use in place of zeros
+#' @param ... additional args
 #' 
 #' @author Vilhelm von Ehrenheim
 #' @import Matrix

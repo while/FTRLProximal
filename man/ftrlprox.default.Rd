@@ -5,7 +5,7 @@
 \title{FTRL Proximal for matrix class}
 \usage{
 \method{ftrlprox}{default}(x, y, lambda1, lambda2, alpha, beta = 1,
-  num_epochs = 1, loss = F, save_data = F)
+  num_epochs = 1, save_loss = F, ...)
 }
 \arguments{
 \item{x}{the model matrix containing features}
@@ -21,6 +21,10 @@
 \item{beta}{learning rate parameter controlling decay, defaults to 1.}
 
 \item{num_epochs}{number of times we should traverse over the traiing set, defaults to 1.}
+
+\item{save_loss}{is to save the loss function during training.}
+
+\item{...}{additional args}
 }
 \value{
 ftrlprox model object

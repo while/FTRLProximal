@@ -12,6 +12,8 @@
 \item{digits}{the number of digits display in printout.}
 
 \item{zero.print}{the symbol to use in place of zeros}
+
+\item{...}{additional args}
 }
 \description{
 Print a text represenation of the ftrlprox model.

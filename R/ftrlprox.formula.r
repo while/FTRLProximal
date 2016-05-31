@@ -12,6 +12,8 @@
 #' @param alpha learning rate parameter
 #' @param beta learning rate parameter controlling decay, defaults to 1.
 #' @param num_epochs number of times we should traverse over the traiing set, defaults to 1.
+#' @param save_loss is to save the loss function during training.
+#' @param ... additional args
 #' @return ftrlprox model object
 #' @author Vilhelm von Ehrenheim
 #' @useDynLib FTRLProximal
@@ -28,13 +30,13 @@
 #'                 alpha=1, lambda1=5.0, lambda2=0.0)
 #' print(mdl)
 ##------------------------------------------------------------------------------
-ftrlprox.formula <- function(formula, data, lambda1, lambda2, alpha, beta=1, num_epochs=1, loss=F) {
+ftrlprox.formula <- function(formula, data, lambda1, lambda2, alpha, beta=1, num_epochs=1, save_loss=F, ...) {
 
   X <- model.matrix(formula, data)
   y <- data[[all.vars(formula[[2]])]]
 
   ftrlprox(X,y,alpha=alpha,beta=beta,
            lambda1=lambda1, lambda2=lambda2,
-           num_epochs=num_epochs, loss=loss)
+           num_epochs=num_epochs, save_loss=save_loss)
 }
 

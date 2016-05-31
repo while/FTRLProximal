@@ -12,6 +12,8 @@
 #' @param alpha learning rate parameter
 #' @param beta learning rate parameter controlling decay, defaults to 1.
 #' @param num_epochs number of times we should traverse over the traiing set, defaults to 1.
+#' @param save_loss is to save the loss function during training.
+#' @param ... additional args
 #' @return ftrlprox model object
 #' @author Vilhelm von Ehrenheim
 #'
@@ -20,7 +22,7 @@
 #' @export
 ##------------------------------------------------------------------------------
 ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1,
-                   loss=F, save_data=F) {
+                   save_loss=F, ...) {
   if (!is.factor(y))
     stop("Dependent variable must be a factor")
 
@@ -53,7 +55,7 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
              beta=as.double(beta),
              lambda1=as.double(lambda1),
              lambda2=as.double(lambda2),
-             loss=as.integer(loss))
+             loss=as.integer(save_loss))
   } else {
           .C("lognet_ftrlprox",
              X=as.double(x),
@@ -67,18 +69,16 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
              beta=as.double(beta),
              lambda1=as.double(lambda1),
              lambda2=as.double(lambda2),
-             loss=as.integer(loss))
+             loss=as.integer(save_loss))
   }
 
-  if(!save_data) {
-    # Remove dataset from output
-    out$X <- NULL
-    out$y <- NULL
+  # Remove dataset from output
+  out$X <- NULL
+  out$y <- NULL
 
-    if (is_sparse) {
-        out$ix <- NULL
-        out$jx <- NULL
-    }
+  if (is_sparse) {
+      out$ix <- NULL
+      out$jx <- NULL
   }
 
   # Set the feature colnames as parameter names

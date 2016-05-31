@@ -12,6 +12,8 @@
 \item{newdata}{the new dataset to predict the outcome of.}
 
 \item{type}{the type of response.}
+
+\item{...}{additional args}
 }
 \value{
 an array containing the predictions

@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{object}{The model object}
+
+\item{...}{additional arguments are not used.}
 }
 \value{
 an array with the regression coefficients
