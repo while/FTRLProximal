@@ -51,7 +51,7 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
         for (int i = 0; i < (*n); i++) {
           z[i]  = 0.;
           nn[i] = 0.;
-          ii[i] = 0;
+          ii[i] = ix[i];
         }
 
         // Total number of non zero elements
@@ -62,9 +62,11 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
                 l1->next = NULL;
                 node_t *li = l1;
 
+
                 // Extract feature vector and indexes where xi is not 0
                 // as those will not help update the coefficients
                 for (int i = 0; i < (*n); i++) {
+                        printf("ii=%d, jx=%d, t=%d\n", ii[i], jx[ii[i]], t);
                         if (jx[ii[i]] == t) {
                                 x[i] = X[ii[i]];
                                 li->val = i;
@@ -76,6 +78,12 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
                                 x[i] = 0.;
                         }
                 }
+
+                printf("x = [");
+                for (int i = 0; i < (*n); i++) {
+                        printf(" %.3f ", x[i]);
+                }
+                printf("]\n");
 
                 // Loop over non zero indices
                 li = l1;

@@ -20,7 +20,7 @@
 #' @export
 ##------------------------------------------------------------------------------
 ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1,
-                   loss=F, save.data=F) {
+                   loss=F, save_data=F) {
   if (!is.factor(y))
     stop("Dependent variable must be a factor")
 
@@ -38,8 +38,8 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
     x <- as(x,"dgCMatrix")
     ix <- as.integer(x@p)
     jx <- as.integer(x@i)
-    m <- as.integer(nrow(x)),
-    n <- as.integer(ncol(x)),
+    m <- as.integer(nrow(x))
+    n <- as.integer(ncol(x))
     x <- as.double(x@x)
   }
 
@@ -48,10 +48,10 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
              X=x,
              ix=ix,
              jx=jx,
-             theta=double(ncol(x)),
+             theta=double(n),
              y=as.double(ynum),
              m=m,
-             n=n),
+             n=n,
              J=numeric(num_epochs),
              num_epochs=as.integer(num_epochs),
              alpha=as.double(alpha),
@@ -75,10 +75,15 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
              loss=as.integer(loss))
   }
 
-  if(!save.data) {
+  if(!save_data) {
     # Remove dataset from output
     out$X <- NULL
     out$y <- NULL
+
+    if (is_sparse) {
+        out$ix <- NULL
+        out$jx <- NULL
+    }
   }
 
   # Set the feature colnames as parameter names
