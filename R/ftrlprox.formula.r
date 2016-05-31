@@ -33,8 +33,8 @@ ftrlprox.formula <- function(formula, data, lambda1, lambda2, alpha, beta=1, num
   X <- model.matrix(formula, data)
   y <- data[[all.vars(formula[[2]])]]
 
-  ftrlprox.matrix(X,y,alpha=alpha,beta=beta,
-                  lambda1=lambda1, lambda2=lambda2,
-                  num_epochs=num_epochs, loss=loss)
+  ftrlprox(X,y,alpha=alpha,beta=beta,
+           lambda1=lambda1, lambda2=lambda2,
+           num_epochs=num_epochs, loss=loss)
 }
 
