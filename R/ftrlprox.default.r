@@ -51,6 +51,8 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
              y=as.double(ynum),
              m=as.integer(nrow(x)),
              n=as.integer(ncol(x)),
+             z=double(ncol(x)),
+             nn=double(ncol(x)),
              J=J,
              num_epochs=as.integer(num_epochs),
              alpha=as.double(alpha),
