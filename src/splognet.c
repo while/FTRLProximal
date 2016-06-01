@@ -29,9 +29,10 @@ void splognet_predict(double *X, double *theta, double *yhat, int *m, int *n)
  * see https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf
  */
 void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
-                       unsigned int *m, unsigned int *n, double *J,
-                       unsigned int *num_epochs, double *alpha, double *bnn,
-                       double *lambda1, double *lambda2, unsigned int *loss)
+                       unsigned int *m, unsigned int *n, double *z, double *nn, 
+                       double *J, unsigned int *num_epochs, double *alpha,
+                       double *bnn, double *lambda1, double *lambda2,
+                       unsigned int *save_loss)
 
 {
         if (DEBUG)  {
@@ -41,19 +42,9 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
         }
 
         // Initialize z and nn
-        double *z = malloc((*n)*sizeof(double));
-        double *nn = malloc((*n)*sizeof(double));
         double *g = malloc((*n)*sizeof(double));
         double *sig = malloc((*n)*sizeof(double));
         double *x = malloc((*n)*sizeof(double));
-
-        for (int i = 0; i < (*n); i++) {
-          z[i]  = 0.;
-          nn[i] = 0.;
-        }
-
-        // Total number of non zero elements
-        int nnz = ix[(*n)];
 
         for (int t = 0; t < ((*m)*(*num_epochs)); t++) {
                 node_t *l1 = malloc(sizeof(node_t));
@@ -104,7 +95,9 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
                 lognet_predict(x, theta, &yhat, &m1, n);
 
                 // Save cost function
-                //J[t] = -y[t%(*m)]*log(yhat) - (1. - y[t%(*m)])*log(1. - yhat);
+                if (*save_loss) {
+                        J[t] = -y[t%(*m)]*log(yhat) - (1. - y[t%(*m)])*log(1. - yhat);
+                }
 
                 // Loop over list again to update gradient and learning rate 
                 li = l1;
@@ -128,8 +121,6 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
         }
 
         // Free up used mem
-        free(z);
-        free(nn);
         free(g);
         free(sig);
         free(x);
