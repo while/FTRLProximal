@@ -25,7 +25,7 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
   if (nlevels(newY) != 2)
     stop("Dependent variable must be a factor with 2 levels")
 
-  if (levels(newY) != object$levels)
+  if (!all.equal(levels(newY), object$levels))
     stop("Dependent variable must have the same levels as original training data")
 
   # Make factor into numeric 0 and 1
@@ -77,6 +77,9 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
              save_loss=as.integer(save_loss))
   }
 
+  # Append loss to old model objects loss
+  out$J <- c(object$J, out$J)
+
   # Remove unnecessary from output
   out$X <- NULL
   out$y <- NULL
@@ -91,10 +94,10 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
   }
 
   # Set the feature colnames as parameter names
-  names(out$theta) <- colnames(x)
+  names(out$theta) <- colnames(newX)
 
   # Save target levels
-  out$levels <- levels(y)
+  out$levels <- object$levels
 
   class(out) <- "ftrlprox"
   out
