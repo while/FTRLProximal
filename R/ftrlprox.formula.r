@@ -17,6 +17,7 @@
 #' @return ftrlprox model object
 #' @author Vilhelm von Ehrenheim
 #' @useDynLib FTRLProximal
+#' @importFrom stats model.matrix
 #' @export
 #' 
 #' @examples
