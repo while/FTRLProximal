@@ -16,7 +16,6 @@
 #' @return ftrlprox model object
 #' @author Vilhelm von Ehrenheim
 #'
-#' @method ftrlprox default
 #' @useDynLib FTRLProximal
 #' @export
 ##------------------------------------------------------------------------------

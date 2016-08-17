@@ -4,7 +4,7 @@
 \alias{initialize.ftrlprox}
 \title{Initialize empty FTRL Proximal class}
 \usage{
-\method{ftrlprox}{default}(theta, levels, lambda1, lambda2, alpha, beta = 1,
+initialize.ftrlprox(theta, levels, lambda1, lambda2, alpha, beta = 1,
   save_loss = F, ...)
 }
 \arguments{
