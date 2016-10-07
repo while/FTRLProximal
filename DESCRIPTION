@@ -1,6 +1,6 @@
 Package: FTRLProximal
 Title: FTRL Proximal implementation for elastic net regression models
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("Vilhelm", "von Ehrenheim", email = "vonehrenheim@gmail.com", role = c("aut", "cre"))
 Description: Implementation of the FRTL Proximal algorithm used for online training of large scale regression models using both L1 and L2 regularization.
 Depends:
