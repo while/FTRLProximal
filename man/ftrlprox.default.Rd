@@ -4,8 +4,8 @@
 \alias{ftrlprox.default}
 \title{FTRL Proximal for matrix class}
 \usage{
-\method{ftrlprox}{default}(x, y, lambda1, lambda2, alpha, beta = 1,
-  num_epochs = 1, save_loss = F, ...)
+\method{ftrlprox}{default}(x, y, lambda1, lambda2, a, b = 1, num_epochs = 1,
+  save_loss = F, ...)
 }
 \arguments{
 \item{x}{the model matrix containing features}
@@ -16,9 +16,9 @@
 
 \item{lambda2}{L2 regularization term}
 
-\item{alpha}{learning rate parameter}
+\item{a}{learning rate parameter}
 
-\item{beta}{learning rate parameter controlling decay, defaults to 1.}
+\item{b}{learning rate parameter controlling decay, defaults to 1.}
 
 \item{num_epochs}{number of times we should traverse over the traiing set, defaults to 1.}
 

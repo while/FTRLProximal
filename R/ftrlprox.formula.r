@@ -24,11 +24,10 @@
 #' require(mlbench)
 #' 
 #' p <- mlbench.circle(100,2)
-#' dat <- data.frame(p$x)
-#' dat$y <- factor(p$classes)
+#' dat <- as.data.frame(p)
 #' 
-#' mdl <- ftrlprox(y ~ X1 + X2 + I(X1^2) + I(X2^2), dat,
-#'                 a=1, lambda1=5.0, lambda2=0.0)
+#' mdl <- ftrlprox(classes ~ x.1 + x.2 + I(x.1^2) + I(x.2^2), dat,
+#'                 a=1, b=1, lambda1=5.0, lambda2=0.0)
 #' print(mdl)
 ##------------------------------------------------------------------------------
 ftrlprox.formula <- function(formula, data, lambda1, lambda2, a, b=1, num_epochs=1, save_loss=F, ...) {

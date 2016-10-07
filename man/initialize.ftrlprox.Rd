@@ -4,7 +4,7 @@
 \alias{initialize.ftrlprox}
 \title{Initialize empty FTRL Proximal class}
 \usage{
-initialize.ftrlprox(theta, levels, lambda1, lambda2, alpha, beta = 1,
+initialize.ftrlprox(theta, levels, lambda1, lambda2, a, b = 1,
   save_loss = F, ...)
 }
 \arguments{
@@ -16,9 +16,9 @@ initialize.ftrlprox(theta, levels, lambda1, lambda2, alpha, beta = 1,
 
 \item{lambda2}{L2 regularization term}
 
-\item{alpha}{learning rate parameter}
+\item{a}{learning rate parameter}
 
-\item{beta}{learning rate parameter controlling decay, defaults to 1.}
+\item{b}{learning rate parameter controlling decay, defaults to 1.}
 
 \item{save_loss}{is to save the loss function during training.}
 
