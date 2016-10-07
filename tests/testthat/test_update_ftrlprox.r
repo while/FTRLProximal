@@ -3,19 +3,16 @@ context("Test update ftrlprox")
 
 set.seed(1)
 p <- mlbench.2dnormals(100,2)
+dat <- as.data.frame(p)
 
-dat <- data.frame(p$x)
-colnames(dat) <- c("A", "B")
-dat$y <- factor(p$classes, labels=c("G", "B"))
-
-X <- model.matrix(y ~ ., dat)
+X <- model.matrix(classes ~ ., dat)
 
 # Train on first half of dataset
-mdl <- ftrlprox(X[1:50, ], dat$y[1:50], alpha=1, beta=1, lambda1=0, lambda2=0)
+mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], alpha=1, beta=1, lambda1=0, lambda2=0)
 
 # Update model using the rest of the data this should generate the same result
 # as training once using all data.
-mdl <- update(mdl, X[51:100, ], dat$y[51:100])
+mdl <- update(mdl, X[51:100, ], dat$classes[51:100])
 
 test_that("Class is ftrlprox", {
           expect_is(mdl, "ftrlprox")
@@ -31,27 +28,27 @@ test_that("Parameter values", {
 })
 
 test_that("Parameter names", {
-          expect_equal(names(mdl$theta), c("(Intercept)", "A", "B"))
+          expect_equal(names(mdl$theta), c("(Intercept)", "x.1", "x.2"))
 })
 
 test_that("Target levels", {
-          expect_equal(mdl$levels, c("G", "B"))
+          expect_equal(mdl$levels, c("1", "2"))
 })
 
 
 test_that("Saving loss", {
-          mdl <- ftrlprox(X[1:50, ], dat$y[1:50], alpha=1, beta=1,
+          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], alpha=1, beta=1,
                           lambda1=0, lambda2=0, save_loss=TRUE)
-          mdl <- update(mdl, X[51:100, ], dat$y[51:100], save_loss=TRUE)
+          mdl <- update(mdl, X[51:100, ], dat$classes[51:100], save_loss=TRUE)
 
           expect_equal(length(mdl$J), nrow(X))
           expect_true(all(mdl$J != 0.0))
 })
 
 test_that("Saving loss many epochs", {
-          mdl <- ftrlprox(X[1:50, ], dat$y[1:50], alpha=1, beta=1,
+          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], alpha=1, beta=1,
                           lambda1=0, lambda2=0, save_loss=TRUE, num_epochs=10)
-          mdl <- update(mdl, X[51:100, ], dat$y[51:100],
+          mdl <- update(mdl, X[51:100, ], dat$classes[51:100],
                         save_loss=TRUE, num_epochs=10)
 
           expect_equal(length(mdl$J), 10*nrow(X))

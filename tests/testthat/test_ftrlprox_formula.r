@@ -3,12 +3,9 @@ context("Test ftrlprox using formula")
 
 set.seed(1)
 p <- mlbench.2dnormals(100,2)
+dat <- as.data.frame(p)
 
-dat <- data.frame(p$x)
-colnames(dat) <- c("A", "B")
-dat$y <- factor(p$classes, labels=c("G", "B"))
-
-mdl <- ftrlprox(y ~ ., dat, alpha=1, beta=1,
+mdl <- ftrlprox(classes ~ ., dat, alpha=1, beta=1,
                 lambda1 = 0, lambda2 = 0)
 
 test_that("Class is ftrlprox", {
@@ -25,9 +22,9 @@ test_that("Parameter values", {
 })
 
 test_that("Parameter names", {
-          expect_equal(names(mdl$theta), c("(Intercept)", "A", "B"))
+          expect_equal(names(mdl$theta), c("(Intercept)", "x.1", "x.2"))
 })
 
 test_that("Target levels", {
-          expect_equal(mdl$levels, c("G", "B"))
+          expect_equal(mdl$levels, c("1", "2"))
 })
