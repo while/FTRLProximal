@@ -10,7 +10,7 @@ dat$y <- factor(p$classes, labels=c("G", "B"))
 
 X <- model.matrix(y ~ ., dat)
 
-mdl <- ftrlprox(X, dat$y, alpha=1, beta=1,
+mdl <- ftrlprox(X, dat$y, a=1, b=1,
                 lambda1 = 0, lambda2 = 0)
 
 test_that("Class is ftrlprox", {
@@ -36,7 +36,7 @@ test_that("Target levels", {
 
 
 test_that("Saving loss", {
-          mdl <- ftrlprox(X, dat$y, alpha=1, beta=1,
+          mdl <- ftrlprox(X, dat$y, a=1, b=1,
                           lambda1=0, lambda2=0,
                           save_loss=TRUE)
 
@@ -45,7 +45,7 @@ test_that("Saving loss", {
 })
 
 test_that("Saving loss many epochs", {
-          mdl <- ftrlprox(X, dat$y, alpha=1, beta=1,
+          mdl <- ftrlprox(X, dat$y, a=1, b=1,
                           lambda1=0, lambda2=0,
                           save_loss=TRUE, num_epochs=10)
 

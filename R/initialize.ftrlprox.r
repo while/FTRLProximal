@@ -9,8 +9,8 @@
 #' @param levels character vector containing class labels of target label
 #' @param lambda1 L1 regularization term
 #' @param lambda2 L2 regularization term
-#' @param alpha learning rate parameter
-#' @param beta learning rate parameter controlling decay, defaults to 1.
+#' @param a learning rate parameter
+#' @param b learning rate parameter controlling decay, defaults to 1.
 #' @param save_loss is to save the loss function during training.
 #' @param ... additional args
 #' @return ftrlprox model object
@@ -19,7 +19,7 @@
 #' @useDynLib FTRLProximal
 #' @export
 ##------------------------------------------------------------------------------
-initialize.ftrlprox <- function(theta, levels, lambda1, lambda2, alpha, beta=1, save_loss=F, ...) {
+initialize.ftrlprox <- function(theta, levels, lambda1, lambda2, a, b=1, save_loss=F, ...) {
 
   n <- length(theta)
 
@@ -31,8 +31,8 @@ initialize.ftrlprox <- function(theta, levels, lambda1, lambda2, alpha, beta=1, 
               nn = numeric(n),
               J = numeric(0),
               num_epochs = 1,
-              alpha = alpha,
-              beta = beta,
+              a = a,
+              b = b,
               lambda1 = lambda1,
               lambda2 = lambda2,
               loss = integer(1),

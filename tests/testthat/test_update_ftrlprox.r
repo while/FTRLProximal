@@ -8,7 +8,7 @@ dat <- as.data.frame(p)
 X <- model.matrix(classes ~ ., dat)
 
 # Train on first half of dataset
-mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], alpha=1, beta=1, lambda1=0, lambda2=0)
+mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a=1, b=1, lambda1=0, lambda2=0)
 
 # Update model using the rest of the data this should generate the same result
 # as training once using all data.
@@ -37,7 +37,7 @@ test_that("Target levels", {
 
 
 test_that("Saving loss", {
-          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], alpha=1, beta=1,
+          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a=1, b=1,
                           lambda1=0, lambda2=0, save_loss=TRUE)
           mdl <- update(mdl, X[51:100, ], dat$classes[51:100], save_loss=TRUE)
 
@@ -46,7 +46,7 @@ test_that("Saving loss", {
 })
 
 test_that("Saving loss many epochs", {
-          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], alpha=1, beta=1,
+          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a=1, b=1,
                           lambda1=0, lambda2=0, save_loss=TRUE, num_epochs=10)
           mdl <- update(mdl, X[51:100, ], dat$classes[51:100],
                         save_loss=TRUE, num_epochs=10)

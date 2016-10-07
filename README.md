@@ -3,7 +3,7 @@
 
 This is an R package of the FTRL Proximal algorithm for online learning.
 
-For more info on the algorithm please see [ad-click-prediction.pdf](https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf)
+For more info on the algorithm please see [Ad Click Prediction: a View from the Trenches](https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf)
 
 ## Installation
 So for this package is not on CRAN. Easiest way to install it is using `devtools`.

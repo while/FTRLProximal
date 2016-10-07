@@ -54,8 +54,8 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
              nn=object$nn,
              J=J,
              num_epochs=as.integer(num_epochs),
-             alpha=as.double(object$alpha),
-             beta=as.double(object$beta),
+             a=as.double(object$a),
+             b=as.double(object$b),
              lambda1=as.double(object$lambda1),
              lambda2=as.double(object$lambda2),
              save_loss=as.integer(save_loss))
@@ -70,8 +70,8 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
              nn=object$nn,
              J=J,
              num_epochs=as.integer(num_epochs),
-             alpha=as.double(object$alpha),
-             beta=as.double(object$beta),
+             a=as.double(object$a),
+             b=as.double(object$b),
              lambda1=as.double(object$lambda1),
              lambda2=as.double(object$lambda2),
              save_loss=as.integer(save_loss))

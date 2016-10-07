@@ -5,7 +5,7 @@ set.seed(1)
 p <- mlbench.2dnormals(100,2)
 dat <- as.data.frame(p)
 
-mdl <- ftrlprox(classes ~ ., dat, alpha=1, beta=1,
+mdl <- ftrlprox(classes ~ ., dat, a=1, b=1,
                 lambda1 = 0, lambda2 = 0)
 
 test_that("Class is ftrlprox", {

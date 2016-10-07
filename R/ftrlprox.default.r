@@ -9,8 +9,8 @@
 #' @param y the response variable
 #' @param lambda1 L1 regularization term
 #' @param lambda2 L2 regularization term
-#' @param alpha learning rate parameter
-#' @param beta learning rate parameter controlling decay, defaults to 1.
+#' @param a learning rate parameter
+#' @param b learning rate parameter controlling decay, defaults to 1.
 #' @param num_epochs number of times we should traverse over the traiing set, defaults to 1.
 #' @param save_loss is to save the loss function during training.
 #' @param ... additional args
@@ -21,8 +21,8 @@
 #' @useDynLib FTRLProximal
 #' @export
 ##------------------------------------------------------------------------------
-ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1,
-                   save_loss=F, ...) {
+ftrlprox.default <- function(x, y, lambda1, lambda2, a, b=1, num_epochs=1,
+                             save_loss=F, ...) {
   if (!is.factor(y))
     stop("Dependent variable must be a factor")
 
@@ -55,8 +55,8 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
              nn=double(ncol(x)),
              J=J,
              num_epochs=as.integer(num_epochs),
-             alpha=as.double(alpha),
-             beta=as.double(beta),
+             a=as.double(a),
+             b=as.double(b),
              lambda1=as.double(lambda1),
              lambda2=as.double(lambda2),
              loss=as.integer(save_loss))
@@ -71,8 +71,8 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, alpha, beta=1, num_epochs=1
              nn=double(ncol(x)),
              J=J,
              num_epochs=as.integer(num_epochs),
-             alpha=as.double(alpha),
-             beta=as.double(beta),
+             a=as.double(a),
+             b=as.double(b),
              lambda1=as.double(lambda1),
              lambda2=as.double(lambda2),
              loss=as.integer(save_loss))
