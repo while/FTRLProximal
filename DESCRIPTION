@@ -5,7 +5,8 @@ Authors@R: person("Vilhelm", "von Ehrenheim", email = "vonehrenheim@gmail.com", 
 Description: Implementation of the FRTL Proximal algorithm used for online training of large scale regression models using both L1 and L2 regularization.
 Depends:
     R (>= 3.2.3),
-    Matrix (>= 1.2)
+Imports:
+    Matrix
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
