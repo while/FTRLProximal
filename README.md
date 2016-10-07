@@ -21,8 +21,7 @@ p <- mlbench::mlbench.2dnormals(100,2)
 dat <- as.data.frame(p)
 
 # Train model
-mdl <- ftrlprox(classes ~ ., dat, alpha=1, beta=1,
-                lambda1 = 0, lambda2 = 0)
+mdl <- ftrlprox(classes ~ ., dat, a=1, b=1, lambda1 = 0, lambda2 = 0)
 
 # Print resulting coeffs
 print(mdl)
@@ -39,7 +38,7 @@ dat <- as.data.frame(p)
 X <- model.matrix(classes ~ ., dat)
 
 # Train on first dataset
-mdl <- ftrlprox(X, dat$classes, alpha=1, beta=1, lambda1=0, lambda2=0)
+mdl <- ftrlprox(X, dat$classes, a=1, b=1, lambda1=0, lambda2=0)
 
 # Generate more of the same data after the first training session
 p <- mlbench.2dnormals(100,2)
