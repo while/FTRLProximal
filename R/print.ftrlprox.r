@@ -11,6 +11,7 @@
 #' @author Vilhelm von Ehrenheim
 #' @import Matrix
 #' @export
+#' @method print ftrlprox
 ##------------------------------------------------------------------------------
 print.ftrlprox <- function(x, digits=NULL, zero.print=".", ...) {
   rn <- names(x$theta)

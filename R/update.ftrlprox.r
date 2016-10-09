@@ -16,6 +16,7 @@
 #'
 #' @method update ftrlprox
 #' @useDynLib FTRLProximal
+#' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
 update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) {

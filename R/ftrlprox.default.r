@@ -19,6 +19,7 @@
 #'
 #' @method ftrlprox default
 #' @useDynLib FTRLProximal
+#' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
 ftrlprox.default <- function(x, y, lambda1, lambda2, a, b=1, num_epochs=1,
