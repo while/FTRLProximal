@@ -14,6 +14,8 @@
 #define ABS(x)  (((x) < 0) ? -(x) : (x))
 #define SGN(x)  (((x) < 0) ? -1. : 1.)
 
+/* Declare lognet's predct function as it is needed here as well. */
+void lognet_predict(double *X, double *theta, double *yhat, int *m, int *n);
 
 /*
  * Predict outcome given a set of feature vectors and the model coefficients
@@ -55,7 +57,7 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
                 // Extract feature vector and indexes where xi is not 0
                 // as those will not help update the coefficients
                 for (int i = 0; i < (*n); i++) {
-                        // a bit of index fiddeling is needed hereto handle
+                        // a bit of index fiddeling is needed here to handle
                         // sparse matrices
                         if (jx[ix[i]] == t) {
                                 x[i] = X[ix[i]];
