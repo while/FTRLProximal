@@ -1,6 +1,6 @@
 # FTRL Proximal
 [![Build Status](https://travis-ci.org/while/FTRLProximal.svg?branch=master)](https://travis-ci.org/while/FTRLProximal)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/FTRLProximal)](http://CRAN.R-project.org/package=FTRLProximal)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/FTRLProximal)](http://CRAN.R-project.org/package=FTRLProximal)
 
 This is an R package of the FTRL Proximal algorithm for online learning.
 
