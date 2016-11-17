@@ -52,3 +52,10 @@ test_that("Saving loss many epochs", {
           expect_equal(length(mdl$J), 10*nrow(X))
           expect_true(all(mdl$J != 0.0))
 })
+
+
+test_that("Different number of rows error", {
+        expect_error(ftrlprox(X[1:2, ], dat$y[1:3], a=1, b=1, lambda1=0, lambda2=0),
+                    "Input has differing number of rows, nrow(x)=2, length(y)=3",
+                    fixed=TRUE) 
+})

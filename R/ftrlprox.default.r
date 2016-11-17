@@ -24,6 +24,10 @@
 ##------------------------------------------------------------------------------
 ftrlprox.default <- function(x, y, lambda1, lambda2, a, b=1, num_epochs=1,
                              save_loss=F, ...) {
+  if (nrow(x) != length(y))
+    stop(sprintf("Input has differing number of rows, nrow(x)=%d, length(y)=%d",
+                 nrow(x), length(y)))
+
   if (!is.factor(y))
     stop("Dependent variable must be a factor")
 
