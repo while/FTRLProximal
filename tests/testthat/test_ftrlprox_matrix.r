@@ -2,7 +2,7 @@ library(mlbench)
 context("Test ftrlprox using model matrix")
 
 set.seed(1)
-p <- mlbench.2dnormals(100,2)
+p <- mlbench.2dnormals(1000,2)
 
 dat <- data.frame(p$x)
 colnames(dat) <- c("A", "B")
@@ -10,8 +10,7 @@ dat$y <- factor(p$classes, labels=c("G", "B"))
 
 X <- model.matrix(y ~ ., dat)
 
-mdl <- ftrlprox(X, dat$y, a=1, b=1,
-                lambda = 0, alpha = 0)
+mdl <- ftrlprox(X, dat$y, lambda=0, alpha=1, a=0.3)
 
 test_that("Class is ftrlprox", {
           expect_is(mdl, "ftrlprox")
@@ -21,9 +20,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.38188318762577)
-          expect_equal(coefs[2], -2.23889313859288)
-          expect_equal(coefs[3], -1.69555552563667)
+          expect_equal(coefs[1], -0.0191484856739)
+          expect_equal(coefs[2], -1.7695263198419)
+          expect_equal(coefs[3], -1.6557359972582)
 })
 
 test_that("Parameter names", {
@@ -36,7 +35,7 @@ test_that("Target levels", {
 
 
 test_that("Saving loss", {
-          mdl <- ftrlprox(X, dat$y, a=1, b=1,
+          mdl <- ftrlprox(X, dat$y, a=0.3, b=1,
                           lambda=0, alpha=0,
                           save_loss=TRUE)
 
@@ -45,7 +44,7 @@ test_that("Saving loss", {
 })
 
 test_that("Saving loss many epochs", {
-          mdl <- ftrlprox(X, dat$y, a=1, b=1,
+          mdl <- ftrlprox(X, dat$y, a=0.3, b=1,
                           lambda=1, alpha=1,
                           save_loss=TRUE, num_epochs=10)
 
@@ -55,7 +54,17 @@ test_that("Saving loss many epochs", {
 
 
 test_that("Different number of rows error", {
-        expect_error(ftrlprox(X[1:2, ], dat$y[1:3], a=1, b=1, lambda=0, alpha=0),
+        expect_error(ftrlprox(X[1:2, ], dat$y[1:3], a=0.3, b=1, lambda=0, alpha=0),
                     "Input has differing number of rows, nrow(x)=2, length(y)=3",
                     fixed=TRUE) 
+})
+
+
+test_that("Parameter values for alpha=0.5", {
+          coefs <- mdl$theta
+          names(coefs) <- NULL
+
+          expect_equal(coefs[1], -0.0191484856739)
+          expect_equal(coefs[2], -1.7695263198419)
+          expect_equal(coefs[3], -1.6557359972582)
 })
