@@ -4,7 +4,7 @@
 \alias{ftrlprox.formula}
 \title{FTRL Proximal formula}
 \usage{
-\method{ftrlprox}{formula}(formula, data, lambda1, lambda2, a, b = 1,
+\method{ftrlprox}{formula}(formula, data, lambda, alpha, a, b = 1,
   num_epochs = 1, save_loss = F, ...)
 }
 \arguments{
@@ -12,9 +12,9 @@
 
 \item{data}{data.frame containing features and dependent variable}
 
-\item{lambda1}{L1 regularization term}
+\item{lambda}{regularization term}
 
-\item{lambda2}{L2 regularization term}
+\item{alpha}{mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.}
 
 \item{a}{learning rate parameter}
 
@@ -42,7 +42,7 @@ p <- mlbench.circle(100,2)
 dat <- as.data.frame(p)
 
 mdl <- ftrlprox(classes ~ x.1 + x.2 + I(x.1^2) + I(x.2^2), dat,
-                a=1, b=1, lambda1=5.0, lambda2=0.0)
+                a = 0.3, lambda = 5.0, alpha = 1.0)
 print(mdl)
 }
 \author{

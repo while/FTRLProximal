@@ -4,7 +4,7 @@
 \alias{ftrlprox.default}
 \title{FTRL Proximal for matrix class}
 \usage{
-\method{ftrlprox}{default}(x, y, lambda1, lambda2, a, b = 1, num_epochs = 1,
+\method{ftrlprox}{default}(x, y, lambda, alpha, a, b = 1, num_epochs = 1,
   save_loss = F, ...)
 }
 \arguments{
@@ -12,11 +12,11 @@
 
 \item{y}{the response variable}
 
-\item{lambda1}{L1 regularization term}
+\item{lambda}{regularization term}
 
-\item{lambda2}{L2 regularization term}
+\item{alpha}{mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.}
 
-\item{a}{learning rate parameter}
+\item{a}{learning rate parameter.}
 
 \item{b}{learning rate parameter controlling decay, defaults to 1.}
 

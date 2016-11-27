@@ -7,9 +7,9 @@
 #'
 #' @param x the model matrix containing features
 #' @param y the response variable
-#' @param lambda1 L1 regularization term
-#' @param lambda2 L2 regularization term
-#' @param a learning rate parameter
+#' @param lambda regularization term
+#' @param alpha mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.
+#' @param a learning rate parameter.
 #' @param b learning rate parameter controlling decay, defaults to 1.
 #' @param num_epochs number of times we should traverse over the traiing set, defaults to 1.
 #' @param save_loss is to save the loss function during training.
@@ -22,7 +22,7 @@
 #' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
-ftrlprox.default <- function(x, y, lambda1, lambda2, a, b=1, num_epochs=1,
+ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
                              save_loss=F, ...) {
   if (nrow(x) != length(y))
     stop(sprintf("Input has differing number of rows, nrow(x)=%d, length(y)=%d",
@@ -62,8 +62,8 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, a, b=1, num_epochs=1,
              num_epochs=as.integer(num_epochs),
              a=as.double(a),
              b=as.double(b),
-             lambda1=as.double(lambda1),
-             lambda2=as.double(lambda2),
+             lambda1=as.double(alpha*lambda),
+             lambda2=as.double((1-alpha)*lambda),
              loss=as.integer(save_loss))
   } else {
           .C("lognet_ftrlprox",
@@ -78,14 +78,18 @@ ftrlprox.default <- function(x, y, lambda1, lambda2, a, b=1, num_epochs=1,
              num_epochs=as.integer(num_epochs),
              a=as.double(a),
              b=as.double(b),
-             lambda1=as.double(lambda1),
-             lambda2=as.double(lambda2),
+             lambda1=as.double(alpha*lambda),
+             lambda2=as.double((1-alpha)*lambda),
              loss=as.integer(save_loss))
   }
 
   # Remove dataset from output
   out$X <- NULL
   out$y <- NULL
+
+  # Save regularization and mixing params instead of raw lambda values
+  out$lambda <- lambda
+  out$alpha  <- alpha
 
   if (is_sparse) {
       out$ix <- NULL

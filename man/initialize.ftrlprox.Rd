@@ -4,17 +4,17 @@
 \alias{initialize.ftrlprox}
 \title{Initialize empty FTRL Proximal class}
 \usage{
-initialize.ftrlprox(theta, levels, lambda1, lambda2, a, b = 1,
-  save_loss = F, ...)
+initialize.ftrlprox(theta, levels, lambda, alpha, a, b = 1, save_loss = F,
+  ...)
 }
 \arguments{
 \item{theta}{named numeric containing initial coefficients}
 
 \item{levels}{character vector containing class labels of target label}
 
-\item{lambda1}{L1 regularization term}
+\item{lambda}{regularization term}
 
-\item{lambda2}{L2 regularization term}
+\item{alpha}{mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.}
 
 \item{a}{learning rate parameter}
 
