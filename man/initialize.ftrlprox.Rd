@@ -12,6 +12,10 @@ initialize.ftrlprox(theta, levels, lambda, alpha, a, b = 1, save_loss = F,
 
 \item{levels}{character vector containing class labels of target label}
 
+\item{lambda}{regularization term}
+
+\item{alpha}{mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.}
+
 \item{a}{learning rate parameter}
 
 \item{b}{learning rate parameter controlling decay, defaults to 1.}
@@ -19,10 +23,6 @@ initialize.ftrlprox(theta, levels, lambda, alpha, a, b = 1, save_loss = F,
 \item{save_loss}{is to save the loss function during training.}
 
 \item{...}{additional args}
-
-\item{lambda1}{L1 regularization term}
-
-\item{lambda2}{L2 regularization term}
 }
 \value{
 ftrlprox model object

@@ -7,8 +7,8 @@
 #'
 #' @param theta named numeric containing initial coefficients
 #' @param levels character vector containing class labels of target label
-#' @param lambda1 L1 regularization term
-#' @param lambda2 L2 regularization term
+#' @param lambda regularization term
+#' @param alpha mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.
 #' @param a learning rate parameter
 #' @param b learning rate parameter controlling decay, defaults to 1.
 #' @param save_loss is to save the loss function during training.

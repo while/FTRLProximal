@@ -42,7 +42,7 @@ p <- mlbench.circle(100,2)
 dat <- as.data.frame(p)
 
 mdl <- ftrlprox(classes ~ x.1 + x.2 + I(x.1^2) + I(x.2^2), dat,
-                a=1, b=1, lambda1=5.0, lambda2=0.0)
+                a = 0.3, lambda = 5.0, alpha = 1.0)
 print(mdl)
 }
 \author{
