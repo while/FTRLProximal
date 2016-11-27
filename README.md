@@ -2,16 +2,18 @@
 [![Build Status](https://travis-ci.org/while/FTRLProximal.svg?branch=master)](https://travis-ci.org/while/FTRLProximal)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/FTRLProximal)](http://CRAN.R-project.org/package=FTRLProximal)
 
-This is an R package of the FTRL Proximal algorithm for online learning.
+This is an R package of the FTRL Proximal algorithm for online learning of elastic net logistic regression models.
 
 For more info on the algorithm please see [Ad Click Prediction: a View from the Trenches](https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf)
 
 ## Installation
-Easiest way to install it is from within `R` using ieither CRAN version or directly from github using `devtools`.
+Easiest way to install is from within `R` using the latest CRAN version:
 
 ```r
 install.packages("FTRLProximal")
 ```
+
+If you want the latest build from git you can install it directly from github using `devtools`:
 
 ```r
 devtools::install_github("while/FTRLProximal")
