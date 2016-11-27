@@ -4,17 +4,13 @@
 \alias{initialize.ftrlprox}
 \title{Initialize empty FTRL Proximal class}
 \usage{
-initialize.ftrlprox(theta, levels, lambda1, lambda2, a, b = 1,
-  save_loss = F, ...)
+initialize.ftrlprox(theta, levels, lambda, alpha, a, b = 1, save_loss = F,
+  ...)
 }
 \arguments{
 \item{theta}{named numeric containing initial coefficients}
 
 \item{levels}{character vector containing class labels of target label}
-
-\item{lambda1}{L1 regularization term}
-
-\item{lambda2}{L2 regularization term}
 
 \item{a}{learning rate parameter}
 
@@ -23,6 +19,10 @@ initialize.ftrlprox(theta, levels, lambda1, lambda2, a, b = 1,
 \item{save_loss}{is to save the loss function during training.}
 
 \item{...}{additional args}
+
+\item{lambda1}{L1 regularization term}
+
+\item{lambda2}{L2 regularization term}
 }
 \value{
 ftrlprox model object

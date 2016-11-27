@@ -11,7 +11,7 @@ dat$y <- factor(p$classes, labels=c("G", "B"))
 X <- sparse.model.matrix(y ~ ., dat)
 
 mdl <- ftrlprox(X, dat$y, a=1, b=1,
-                lambda1 = 0, lambda2 = 0)
+                lambda = 0, alpha = 1)
 
 test_that("Class is ftrlprox", {
           expect_is(mdl, "ftrlprox")

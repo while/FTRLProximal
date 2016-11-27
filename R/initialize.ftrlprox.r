@@ -19,7 +19,7 @@
 #' @useDynLib FTRLProximal
 #' @export
 ##------------------------------------------------------------------------------
-initialize.ftrlprox <- function(theta, levels, lambda1, lambda2, a, b=1, save_loss=F, ...) {
+initialize.ftrlprox <- function(theta, levels, lambda, alpha, a, b=1, save_loss=F, ...) {
 
   n <- length(theta)
 
@@ -33,8 +33,8 @@ initialize.ftrlprox <- function(theta, levels, lambda1, lambda2, a, b=1, save_lo
               num_epochs = 1,
               a = a,
               b = b,
-              lambda1 = lambda1,
-              lambda2 = lambda2,
+              lambda = lambda,
+              alpha = alpha,
               loss = integer(1),
               levels = levels)
 

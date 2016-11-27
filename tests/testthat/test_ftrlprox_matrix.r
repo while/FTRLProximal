@@ -11,7 +11,7 @@ dat$y <- factor(p$classes, labels=c("G", "B"))
 X <- model.matrix(y ~ ., dat)
 
 mdl <- ftrlprox(X, dat$y, a=1, b=1,
-                lambda1 = 0, lambda2 = 0)
+                lambda = 0, alpha = 0)
 
 test_that("Class is ftrlprox", {
           expect_is(mdl, "ftrlprox")
@@ -37,7 +37,7 @@ test_that("Target levels", {
 
 test_that("Saving loss", {
           mdl <- ftrlprox(X, dat$y, a=1, b=1,
-                          lambda1=0, lambda2=0,
+                          lambda=0, alpha=0,
                           save_loss=TRUE)
 
           expect_equal(length(mdl$J), nrow(X))
@@ -46,7 +46,7 @@ test_that("Saving loss", {
 
 test_that("Saving loss many epochs", {
           mdl <- ftrlprox(X, dat$y, a=1, b=1,
-                          lambda1=0, lambda2=0,
+                          lambda=1, alpha=1,
                           save_loss=TRUE, num_epochs=10)
 
           expect_equal(length(mdl$J), 10*nrow(X))
@@ -55,7 +55,7 @@ test_that("Saving loss many epochs", {
 
 
 test_that("Different number of rows error", {
-        expect_error(ftrlprox(X[1:2, ], dat$y[1:3], a=1, b=1, lambda1=0, lambda2=0),
+        expect_error(ftrlprox(X[1:2, ], dat$y[1:3], a=1, b=1, lambda=0, alpha=0),
                     "Input has differing number of rows, nrow(x)=2, length(y)=3",
                     fixed=TRUE) 
 })
