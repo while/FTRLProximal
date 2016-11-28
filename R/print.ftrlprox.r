@@ -13,7 +13,7 @@
 #' @export
 #' @method print ftrlprox
 ##------------------------------------------------------------------------------
-print.ftrlprox <- function(x, digits=NULL, zero.print=".", ...) {
+print.ftrlprox <- function(x, digits=getOption("digits"), zero.print=".", ...) {
   rn <- names(x$theta)
   theta <- Matrix(x$theta, sparse=T)
   rownames(theta) <- rn

@@ -9,11 +9,12 @@ dat$x.3 <- rnorm(100)
 mdl <- ftrlprox(classes ~ ., dat, a=0.3, lambda = 1, alpha = 1)
 
 test_that("Default print", {
+          # Set default number of digits
+          options(digits=6)
 
           # Test default amount of digits
           expect_output(print(mdl),
                         "Coefficients:\\s+\\(Intercept\\)\\s+-0.00677584\\s+x\\.1\\s+-1.75985861\\s+x\\.2\\s+-1.64894623\\s+x\\.3\\s+\\.")
-
 })
 
 
