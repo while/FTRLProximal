@@ -4,7 +4,8 @@
 \alias{print.ftrlprox}
 \title{Print a ftrlprox model}
 \usage{
-\method{print}{ftrlprox}(x, digits = NULL, zero.print = ".", ...)
+\method{print}{ftrlprox}(x, digits = getOption("digits"), zero.print = ".",
+  ...)
 }
 \arguments{
 \item{x}{The model object to print}
