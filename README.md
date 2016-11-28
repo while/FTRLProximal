@@ -1,5 +1,6 @@
 # FTRL Proximal
 [![Build Status](https://travis-ci.org/while/FTRLProximal.svg?branch=master)](https://travis-ci.org/while/FTRLProximal)
+[![codecov](https://codecov.io/github/while/FTRLProximal/branch/master/graphs/badge.svg)](https://codecov.io/github/while/FTRLProximal)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/FTRLProximal)](http://cran.r-project.org/package=FTRLProximal)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/FTRLProximal)](http://CRAN.R-project.org/package=FTRLProximal)
 
