@@ -54,3 +54,37 @@ test_that("Saving loss many epochs", {
           expect_equal(length(mdl$J), 10*nrow(X))
           expect_true(all(mdl$J != 0.0))
 })
+
+
+test_that("Not a factor error", {
+        expect_error(ftrlprox(X, as.numeric(dat$classes),
+                              lambda=0, alpha=0, a=0.3),
+                     "Dependent variable must be a factor")
+})
+
+
+test_that("Not a factor w 2 levels", {
+        expect_error(ftrlprox(X, factor(dat$classes, levels=1:4),
+                              lambda=0, alpha=0, a=0.3),
+                     "Dependent variable must be a factor with 2 levels")
+})
+
+
+test_that("Parameter values trained on sparse matrix", {
+          spX <- sparse.model.matrix(classes ~ ., dat)
+
+          # Train on first half of dataset
+          mdl <- ftrlprox(spX[1:50, ], dat$classes[1:50], a=1, lambda=0, alpha=0)
+
+          # Update model using the rest of the data this should generate the same result
+          # as training once using all data.
+          mdl <- update(mdl, spX[51:100, ], dat$classes[51:100])
+
+          coefs <- mdl$theta
+          names(coefs) <- NULL
+
+          expect_equal(coefs[1], -0.38188318762577)
+          expect_equal(coefs[2], -2.23889313859288)
+          expect_equal(coefs[3], -1.69555552563667)
+})
+
