@@ -1,7 +1,7 @@
 # FTRL Proximal
 [![Build Status](https://travis-ci.org/while/FTRLProximal.svg?branch=master)](https://travis-ci.org/while/FTRLProximal)
 [![codecov](https://codecov.io/github/while/FTRLProximal/branch/master/graphs/badge.svg)](https://codecov.io/github/while/FTRLProximal)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/FTRLProximal)](https://CRAN.R-project.org/package=FTRLProximal)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/FTRLProximal)](https://CRAN.R-project.org/package=FTRLProximal)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/FTRLProximal)](https://CRAN.R-project.org/package=FTRLProximal)
 
 This is an R package of the FTRL Proximal algorithm for online learning of elastic net logistic regression models.
