@@ -26,7 +26,7 @@ double sigmoid(double x)
 /*
  * Predict outcome given a set of feature vectors and the model coefficients
  */
-void lognet_predict(double *X, double *theta, double *yhat, int *m, int *n)
+void lognet_predict(double *X, double *theta, double *yhat, int *m, unsigned int *n)
 {
         // Define constants needed for BLAS routine below
         double a = 1.0;
