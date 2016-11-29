@@ -22,9 +22,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.38188318762577)
-          expect_equal(coefs[2], -2.23889313859288)
-          expect_equal(coefs[3], -1.69555552563667)
+          expect_equal(coefs[1], -0.38188318762577, tolerance=1e-8)
+          expect_equal(coefs[2], -2.23889313859288, tolerance=1e-8)
+          expect_equal(coefs[3], -1.69555552563667, tolerance=1e-8)
 })
 
 test_that("Parameter names", {
@@ -83,8 +83,8 @@ test_that("Parameter values trained on sparse matrix", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.38188318762577)
-          expect_equal(coefs[2], -2.23889313859288)
-          expect_equal(coefs[3], -1.69555552563667)
+          expect_equal(coefs[1], -0.38188318762577, tolerance=1e-8)
+          expect_equal(coefs[2], -2.23889313859288, tolerance=1e-8)
+          expect_equal(coefs[3], -1.69555552563667, tolerance=1e-8)
 })
 

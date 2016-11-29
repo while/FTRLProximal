@@ -15,9 +15,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.38188318762577)
-          expect_equal(coefs[2], -2.23889313859288)
-          expect_equal(coefs[3], -1.69555552563667)
+          expect_equal(coefs[1], -0.38188318762577, tolerance=1e-8)
+          expect_equal(coefs[2], -2.23889313859288, tolerance=1e-8)
+          expect_equal(coefs[3], -1.69555552563667, tolerance=1e-8)
 })
 
 test_that("Parameter names", {
@@ -50,8 +50,8 @@ test_that("Params are 0 for random factor using some L1 reg", {
           coefs <- coef(mdl)
 
           expect_equal(coefs[[1]], 0.0)
-          expect_equal(coefs[[2]], -1.991057956153)
-          expect_equal(coefs[[3]], -1.603337154425)
+          expect_equal(coefs[[2]], -1.991057956153, tolerance=1e-8)
+          expect_equal(coefs[[3]], -1.603337154425, tolerance=1e-8)
           expect_equal(coefs[[4]], 0.0)
           expect_equal(coefs[[5]], 0.0)
           expect_equal(coefs[[6]], 0.0)

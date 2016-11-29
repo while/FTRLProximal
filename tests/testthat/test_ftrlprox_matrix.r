@@ -20,9 +20,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.0191484856739)
-          expect_equal(coefs[2], -1.7695263198419)
-          expect_equal(coefs[3], -1.6557359972582)
+          expect_equal(coefs[1], -0.0191484856739, tolerance=1e-8)
+          expect_equal(coefs[2], -1.7695263198419, tolerance=1e-8)
+          expect_equal(coefs[3], -1.6557359972582, tolerance=1e-8)
 })
 
 test_that("Parameter names", {
@@ -64,7 +64,7 @@ test_that("Parameter values for alpha=0.5", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.0191484856739)
-          expect_equal(coefs[2], -1.7695263198419)
-          expect_equal(coefs[3], -1.6557359972582)
+          expect_equal(coefs[1], -0.0191484856739, tolerance=1e-8)
+          expect_equal(coefs[2], -1.7695263198419, tolerance=1e-8)
+          expect_equal(coefs[3], -1.6557359972582, tolerance=1e-8)
 })

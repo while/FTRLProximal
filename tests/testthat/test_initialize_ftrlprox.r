@@ -28,9 +28,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.38188318762577)
-          expect_equal(coefs[2], -2.23889313859288)
-          expect_equal(coefs[3], -1.69555552563667)
+          expect_equal(coefs[1], -0.3818831876, tolerance=1e-8)
+          expect_equal(coefs[2], -2.2388931385, tolerance=1e-8)
+          expect_equal(coefs[3], -1.6955555256, tolerance=1e-8)
 })
 
 test_that("Parameter names", {
