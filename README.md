@@ -59,6 +59,6 @@ mdl <- update(mdl, X, dat$classes)
 
 For more example please see the documentation.
 
-# Change log
-## 0.2.1
+## Change log
+### 0.2.1
 * Changed from using explicit `lambda1` and `lambda2` parameters to using `lambda` and mixing parameter `alpha`.
