@@ -31,7 +31,7 @@ void splognet_predict(double *X, double *theta, double *yhat, int *m, int *n)
  * see https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf
  */
 void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
-                       unsigned int *m, unsigned int *n, double *z, double *nn, 
+                       int *m, int *n, double *z, double *nn, 
                        double *J, unsigned int *num_epochs, double *alpha,
                        double *bnn, double *lambda1, double *lambda2,
                        unsigned int *save_loss)

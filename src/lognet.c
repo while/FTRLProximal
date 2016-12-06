@@ -26,7 +26,7 @@ double sigmoid(double x)
 /*
  * Predict outcome given a set of feature vectors and the model coefficients
  */
-void lognet_predict(double *X, double *theta, double *yhat, int *m, unsigned int *n)
+void lognet_predict(double *X, double *theta, double *yhat, int *m, int *n)
 {
         // Define constants needed for BLAS routine below
         double a = 1.0;
@@ -49,8 +49,8 @@ void lognet_predict(double *X, double *theta, double *yhat, int *m, unsigned int
  * Online elastic net logistic regression trained using FTRL-Proximal
  * see https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf
  */
-void lognet_ftrlprox(double *X, double *theta, double *y, unsigned int *m, 
-                     unsigned int *n, double *z, double *nn, double *J,
+void lognet_ftrlprox(double *X, double *theta, double *y, int *m, 
+                     int *n, double *z, double *nn, double *J,
                      unsigned int *num_epochs, double *alpha, double *bnn,
                      double *lambda1, double *lambda2, unsigned int *save_loss)
 

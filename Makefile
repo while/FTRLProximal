@@ -17,6 +17,8 @@ build: doc
 
 clean:
 	rm -r build/
+	rm src/*.o
+	rm src/*.so
 
 cover:
 	Rscript --vanilla -e "covr::package_coverage()"
