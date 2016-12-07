@@ -14,7 +14,7 @@ theta <- numeric(3)
 names(theta) <- c("(Intercept)", "A", "B")
 
 # Set up enpty object
-mdl <- initialize.ftrlprox(theta, c("G", "B"), a=1, b=1, lambda=0, alpha=0)
+mdl <- initialize.ftrlprox(theta, c("G", "B"), a=0.3, b=1, lambda=0, alpha=0)
 
 # Update model using the rest of the data this should generate the same result
 # as training once using all data.
@@ -28,9 +28,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.3818831876, tolerance=1e-8)
-          expect_equal(coefs[2], -2.2388931385, tolerance=1e-8)
-          expect_equal(coefs[3], -1.6955555256, tolerance=1e-8)
+          expect_equal(coefs[1], -0.110366358105649, tolerance=1e-8)
+          expect_equal(coefs[2], -1.303382372935719, tolerance=1e-8)
+          expect_equal(coefs[3], -1.169874403463117, tolerance=1e-8)
 })
 
 test_that("Parameter names", {

@@ -10,8 +10,7 @@ dat$y <- factor(p$classes, labels=c("G", "B"))
 
 X <- sparse.model.matrix(y ~ ., dat)
 
-mdl <- ftrlprox(X, dat$y, a=1, b=1,
-                lambda = 0, alpha = 1)
+mdl <- ftrlprox(X, dat$y, a = 0.3, lambda = 0, alpha = 1)
 
 test_that("Class is ftrlprox", {
           expect_is(mdl, "ftrlprox")
@@ -21,9 +20,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1],  1.3890292601737, tolerance=1e-8)
-          expect_equal(coefs[2], -2.2134049722885, tolerance=1e-8)
-          expect_equal(coefs[3], -1.8044648305589, tolerance=1e-8)
+          expect_equal(coefs[1], 0.431587946046618, tolerance=1e-8)
+          expect_equal(coefs[2], -1.036847034291526, tolerance=1e-8)
+          expect_equal(coefs[3], -0.918381020470813, tolerance=1e-8)
 })
 
 test_that("Parameter names", {

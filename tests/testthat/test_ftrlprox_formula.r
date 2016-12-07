@@ -5,7 +5,7 @@ set.seed(1)
 p <- mlbench.2dnormals(100,2)
 dat <- as.data.frame(p)
 
-mdl <- ftrlprox(classes ~ ., dat, a=1, b=1, lambda = 0, alpha = 1)
+mdl <- ftrlprox(classes ~ ., dat, a = 0.3, lambda = 0, alpha = 1)
 
 test_that("Class is ftrlprox", {
           expect_is(mdl, "ftrlprox")
@@ -15,9 +15,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.38188318762577, tolerance=1e-8)
-          expect_equal(coefs[2], -2.23889313859288, tolerance=1e-8)
-          expect_equal(coefs[3], -1.69555552563667, tolerance=1e-8)
+          expect_equal(coefs[1], -0.110366358105649, tolerance=1e-8)
+          expect_equal(coefs[2], -1.303382372935719, tolerance=1e-8)
+          expect_equal(coefs[3], -1.169874403463117, tolerance=1e-8)
 })
 
 test_that("Parameter names", {
@@ -31,7 +31,7 @@ test_that("Target levels", {
 
 # -----------------------------------------------------------------------------
 test_that("Params are 0 for large lambda", {
-          mdl <- ftrlprox(classes ~ ., dat, a=1, b=1, lambda = 100, alpha = 1)
+          mdl <- ftrlprox(classes ~ ., dat, a = 0.3, lambda = 100, alpha = 1)
           coefs <- mdl$theta
           names(coefs) <- NULL
 
@@ -46,12 +46,12 @@ test_that("Params are 0 for random factor using some L1 reg", {
           set.seed(1)
           dat2 <- dat
           dat2$random_alpha <- factor(sample(letters, nrow(dat), T), levels=letters)
-          mdl <- ftrlprox(classes ~ ., dat2, a=1, b=1, lambda = 2, alpha = 1)
+          mdl <- ftrlprox(classes ~ ., dat2, a = 0.3, lambda = 2, alpha = 1)
           coefs <- coef(mdl)
 
           expect_equal(coefs[[1]], 0.0)
-          expect_equal(coefs[[2]], -1.991057956153, tolerance=1e-8)
-          expect_equal(coefs[[3]], -1.603337154425, tolerance=1e-8)
+          expect_equal(coefs[[2]], -1.15539216945350, tolerance=1e-8)
+          expect_equal(coefs[[3]], -1.09002332655129, tolerance=1e-8)
           expect_equal(coefs[[4]], 0.0)
           expect_equal(coefs[[5]], 0.0)
           expect_equal(coefs[[6]], 0.0)

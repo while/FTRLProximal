@@ -8,7 +8,7 @@ dat <- as.data.frame(p)
 X <- model.matrix(classes ~ ., dat)
 
 # Train on first half of dataset
-mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a=1, b=1, lambda=0, alpha=0)
+mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a = 0.3, lambda=0, alpha=0)
 
 # Update model using the rest of the data this should generate the same result
 # as training once using all data.
@@ -22,9 +22,9 @@ test_that("Parameter values", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.38188318762577, tolerance=1e-8)
-          expect_equal(coefs[2], -2.23889313859288, tolerance=1e-8)
-          expect_equal(coefs[3], -1.69555552563667, tolerance=1e-8)
+          expect_equal(coefs[1], -0.110366358105649, tolerance=1e-8)
+          expect_equal(coefs[2], -1.303382372935719, tolerance=1e-8)
+          expect_equal(coefs[3], -1.169874403463117, tolerance=1e-8)
 })
 
 test_that("Parameter names", {
@@ -37,7 +37,7 @@ test_that("Target levels", {
 
 
 test_that("Saving loss", {
-          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a=1, b=1,
+          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a = 0.3,
                           lambda=0, alpha=0, save_loss=TRUE)
           mdl <- update(mdl, X[51:100, ], dat$classes[51:100], save_loss=TRUE)
 
@@ -46,7 +46,7 @@ test_that("Saving loss", {
 })
 
 test_that("Saving loss many epochs", {
-          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a=1, b=1,
+          mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a=0.3,
                           lambda=0, alpha=0, save_loss=TRUE, num_epochs=10)
           mdl <- update(mdl, X[51:100, ], dat$classes[51:100],
                         save_loss=TRUE, num_epochs=10)
@@ -74,7 +74,7 @@ test_that("Parameter values trained on sparse matrix", {
           spX <- sparse.model.matrix(classes ~ ., dat)
 
           # Train on first half of dataset
-          mdl <- ftrlprox(spX[1:50, ], dat$classes[1:50], a=1, lambda=0, alpha=0)
+          mdl <- ftrlprox(spX[1:50, ], dat$classes[1:50], a = 0.3, lambda=0, alpha=0)
 
           # Update model using the rest of the data this should generate the same result
           # as training once using all data.
@@ -83,8 +83,8 @@ test_that("Parameter values trained on sparse matrix", {
           coefs <- mdl$theta
           names(coefs) <- NULL
 
-          expect_equal(coefs[1], -0.38188318762577, tolerance=1e-8)
-          expect_equal(coefs[2], -2.23889313859288, tolerance=1e-8)
-          expect_equal(coefs[3], -1.69555552563667, tolerance=1e-8)
+          expect_equal(coefs[1], -0.110366358105649, tolerance=1e-8)
+          expect_equal(coefs[2], -1.303382372935719, tolerance=1e-8)
+          expect_equal(coefs[3], -1.169874403463117, tolerance=1e-8)
 })
 
