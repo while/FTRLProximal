@@ -6,7 +6,8 @@
 #' 
 #' @param object The model object to use for prediction.
 #' @param newdata the new dataset to predict the outcome of.
-#' @param type the type of response.
+#' @param type the type of response. Can be 'class' for class perdictions or
+#' 'response' for probabilities. Default option is 'response'.
 #' @param ... additional args
 #' @return an array containing the predictions
 #' 
