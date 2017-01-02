@@ -2,7 +2,7 @@ Package: FTRLProximal
 Title: FTRL Proximal Implementation for Elastic Net Regression
 Version: 0.2.2
 Authors@R: person("Vilhelm", "von Ehrenheim", email = "vonehrenheim@gmail.com", role = c("aut", "cre"))
-Description: Implementation of Follow The Regularized Leader (FTRL) Proximal algorithm used for online training of large scale regression models using a mixture of L1 and L2 regularization.
+Description: Implementation of Follow The Regularized Leader (FTRL) Proximal algorithm, proposed by McMahan et al. (2013) <doi:10.1145/2487575.2488200>, used for online training of large scale regression models using a mixture of L1 and L2 regularization.
 URL: https://github.com/while/FTRLProximal
 BugReports: https://github.com/while/FTRLProximal/issues
 Depends:
