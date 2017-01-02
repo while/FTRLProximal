@@ -71,7 +71,7 @@ test_that("Not a factor w 2 levels", {
 
 
 test_that("Parameter values trained on sparse matrix", {
-          spX <- sparse.model.matrix(classes ~ ., dat)
+          spX <- Matrix::sparse.model.matrix(classes ~ ., dat)
 
           # Train on first half of dataset
           mdl <- ftrlprox(spX[1:50, ], dat$classes[1:50], a = 0.3, lambda=0, alpha=0)
@@ -81,10 +81,10 @@ test_that("Parameter values trained on sparse matrix", {
           mdl <- update(mdl, spX[51:100, ], dat$classes[51:100])
 
           coefs <- mdl$theta
-          names(coefs) <- NULL
+          expected <- c('(Intercept)'=-0.110366358105649,
+                        'x.1' = -1.303382372935719,
+                        'x.2' = -1.169874403463117)
 
-          expect_equal(coefs[1], -0.110366358105649, tolerance=1e-8)
-          expect_equal(coefs[2], -1.303382372935719, tolerance=1e-8)
-          expect_equal(coefs[3], -1.169874403463117, tolerance=1e-8)
+          expect_equal(coefs, expected, tolerance=1e-8)
 })
 

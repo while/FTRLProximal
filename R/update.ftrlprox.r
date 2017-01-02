@@ -57,8 +57,8 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
              num_epochs=as.integer(num_epochs),
              a=as.double(object$a),
              b=as.double(object$b),
-             lambda1=as.double(object$lambda1),
-             lambda2=as.double(object$lambda2),
+             lambda1=as.double(object$alpha*object$lambda),
+             lambda2=as.double((1-object$alpha)*object$lambda),
              save_loss=as.integer(save_loss))
   } else {
           .C("lognet_ftrlprox",
@@ -73,8 +73,8 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
              num_epochs=as.integer(num_epochs),
              a=as.double(object$a),
              b=as.double(object$b),
-             lambda1=as.double(object$lambda1),
-             lambda2=as.double(object$lambda2),
+             lambda1=as.double(object$alpha*object$lambda),
+             lambda2=as.double((1-object$alpha)*object$lambda),
              save_loss=as.integer(save_loss))
   }
 
@@ -99,6 +99,10 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
 
   # Save target levels
   out$levels <- object$levels
+
+  # Save regularization and mixing params instead of raw lambda values
+  out$lambda <- object$lambda
+  out$alpha  <- object$alpha
 
   class(out) <- "ftrlprox"
   out
