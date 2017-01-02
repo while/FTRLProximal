@@ -4,14 +4,16 @@
 \alias{predict.ftrlprox}
 \title{Predict function for FTRLProx models}
 \usage{
-\method{predict}{ftrlprox}(object, newdata = NULL, type = "response", ...)
+\method{predict}{ftrlprox}(object, newdata = NULL, type = c("response",
+  "class"), ...)
 }
 \arguments{
 \item{object}{The model object to use for prediction.}
 
 \item{newdata}{the new dataset to predict the outcome of.}
 
-\item{type}{the type of response.}
+\item{type}{the type of response. Can be 'class' for class perdictions or
+'response' for probabilities. Default option is 'response'.}
 
 \item{...}{additional args}
 }
