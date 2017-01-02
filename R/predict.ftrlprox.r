@@ -14,7 +14,9 @@
 #' @useDynLib FTRLProximal
 #' @export
 ##------------------------------------------------------------------------------
-predict.ftrlprox <- function(object, newdata=NULL, type="response", ...) {
+predict.ftrlprox <- function(object, newdata=NULL, type=c("response", "class"), ...) {
+  type=match.arg(type)
+
   out <- .C("lognet_predict",
             X=as.double(newdata),
             theta=as.double(object$theta),
@@ -22,6 +24,8 @@ predict.ftrlprox <- function(object, newdata=NULL, type="response", ...) {
             m=as.integer(nrow(newdata)),
             n=as.integer(ncol(newdata)))
 
-  return(out$y)
+  switch(type,
+         response = out$y,
+         class = factor(ifelse(out$y<0.5, 1, 2), labels=object$levels))
 }
 
