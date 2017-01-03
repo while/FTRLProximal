@@ -6,7 +6,7 @@
 
 This is an R package of the FTRL Proximal algorithm for online learning of elastic net logistic regression models.
 
-For more info on the algorithm please see [Ad Click Prediction: a View from the Trenches](https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf) by McMahan et al. (2013) <doi:10.1145/2487575.2488200>.
+For more info on the algorithm please see [Ad Click Prediction: a View from the Trenches](https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf) by McMahan et al. (2013).
 
 ## Installation
 Easiest way to install is from within `R` using the latest CRAN version:
