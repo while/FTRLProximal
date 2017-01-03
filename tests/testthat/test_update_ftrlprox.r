@@ -57,16 +57,19 @@ test_that("Saving loss many epochs", {
 
 
 test_that("Not a factor error", {
-        expect_error(ftrlprox(X, as.numeric(dat$classes),
-                              lambda=0, alpha=0, a=0.3),
+        expect_error(update(mdl, X, as.numeric(dat$classes)),
                      "Dependent variable must be a factor")
 })
 
 
 test_that("Not a factor w 2 levels", {
-        expect_error(ftrlprox(X, factor(dat$classes, levels=1:4),
-                              lambda=0, alpha=0, a=0.3),
+        expect_error(update(mdl, X, factor(dat$classes, levels=1:4)),
                      "Dependent variable must be a factor with 2 levels")
+})
+
+test_that("Not same factor levels in target", {
+        expect_error(update(mdl, X, factor(dat$classes, labels=letters[1:2])),
+                     "Dependent variable must have the same levels as original training data")
 })
 
 

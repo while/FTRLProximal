@@ -26,7 +26,7 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
   if (nlevels(newY) != 2)
     stop("Dependent variable must be a factor with 2 levels")
 
-  if (!all.equal(levels(newY), object$levels))
+  if (all.equal(levels(newY), object$levels) != TRUE)
     stop("Dependent variable must have the same levels as original training data")
 
   # Make factor into numeric 0 and 1
