@@ -8,7 +8,7 @@
 #' @param object the model object
 #' @param newX new feature vectors. This needs to be the same features as used in previous training rounds for this object.
 #' @param newY new observations
-#' @param num_epochs number of times we should traverse over the training data, defaults to 1.
+#' @param epochs number of times we should traverse over the training data, defaults to 1.
 #' @param save_loss is to save the loss function during training. This will be appended to previous loss vector.
 #' @param ... additional args
 #' @return ftrlprox model object
@@ -19,7 +19,7 @@
 #' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
-update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) {
+update.ftrlprox <- function(object, newX, newY, epochs=1, save_loss=F, ...) {
   if (!is.factor(newY))
     stop("Dependent variable must be a factor")
 
@@ -103,10 +103,10 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
 
   class(out) <- "ftrlprox"
 
-  while (num_epochs > 1) {
+  while (epochs > 1) {
           idx <- sample(1:nrow(newX))
           out <- update(out, newX[idx, ], newY[idx], save_loss=save_loss)
-          num_epochs <- num_epochs - 1
+          epochs <- epochs - 1
   }
   out
 }

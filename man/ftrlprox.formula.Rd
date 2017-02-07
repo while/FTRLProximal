@@ -5,7 +5,7 @@
 \title{FTRL Proximal formula}
 \usage{
 \method{ftrlprox}{formula}(formula, data, lambda, alpha, a, b = 1,
-  num_epochs = 1, save_loss = F, ...)
+  epochs = 1, save_loss = F, ...)
 }
 \arguments{
 \item{formula}{modeling formula}
@@ -20,7 +20,7 @@
 
 \item{b}{learning rate parameter controlling decay, defaults to 1.}
 
-\item{num_epochs}{number of times we should traverse over the traiing set, defaults to 1.}
+\item{epochs}{number of times we should traverse over the traiing set, defaults to 1.}
 
 \item{save_loss}{is to save the loss function during training.}
 
