@@ -30,7 +30,7 @@ initialize.ftrlprox <- function(theta, levels, lambda, alpha, a, b=1, save_loss=
               z = numeric(n),
               nn = numeric(n),
               J = numeric(0),
-              num_epochs = 1,
+              epochs = 1,
               a = a,
               b = b,
               lambda = lambda,

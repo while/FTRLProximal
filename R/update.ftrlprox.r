@@ -8,7 +8,7 @@
 #' @param object the model object
 #' @param newX new feature vectors. This needs to be the same features as used in previous training rounds for this object.
 #' @param newY new observations
-#' @param num_epochs number of times we should traverse over the training data, defaults to 1.
+#' @param epochs number of times we should traverse over the training data, defaults to 1.
 #' @param save_loss is to save the loss function during training. This will be appended to previous loss vector.
 #' @param ... additional args
 #' @return ftrlprox model object
@@ -19,7 +19,7 @@
 #' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
-update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) {
+update.ftrlprox <- function(object, newX, newY, epochs=1, save_loss=F, ...) {
   if (!is.factor(newY))
     stop("Dependent variable must be a factor")
 
@@ -40,7 +40,7 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
     newX <- as(newX,"dgCMatrix")
   }
 
-  J = if (save_loss) numeric(nrow(newX)*num_epochs) else numeric(0)
+  J = if (save_loss) numeric(nrow(newX)) else numeric(0)
 
   out <- if(is_sparse) {
           .C("splognet_ftrlprox",
@@ -54,7 +54,6 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
              z=object$z,
              nn=object$nn,
              J=J,
-             num_epochs=as.integer(num_epochs),
              a=as.double(object$a),
              b=as.double(object$b),
              lambda1=as.double(object$alpha*object$lambda),
@@ -70,7 +69,6 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
              z=object$z,
              nn=object$nn,
              J=J,
-             num_epochs=as.integer(num_epochs),
              a=as.double(object$a),
              b=as.double(object$b),
              lambda1=as.double(object$alpha*object$lambda),
@@ -87,7 +85,6 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
   out$m <- NULL
   out$n <- NULL
   out$save_loss <- NULL
-  out$num_epochs <- NULL
 
   if (is_sparse) {
       out$ix <- NULL
@@ -105,5 +102,11 @@ update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) 
   out$alpha  <- object$alpha
 
   class(out) <- "ftrlprox"
+
+  while (epochs > 1) {
+          idx <- sample(1:nrow(newX))
+          out <- update(out, newX[idx, ], newY[idx], save_loss=save_loss)
+          epochs <- epochs - 1
+  }
   out
 }

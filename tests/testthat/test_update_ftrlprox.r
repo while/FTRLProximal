@@ -47,9 +47,9 @@ test_that("Saving loss", {
 
 test_that("Saving loss many epochs", {
           mdl <- ftrlprox(X[1:50, ], dat$classes[1:50], a=0.3,
-                          lambda=0, alpha=0, save_loss=TRUE, num_epochs=10)
+                          lambda=0, alpha=0, save_loss=TRUE, epochs=10)
           mdl <- update(mdl, X[51:100, ], dat$classes[51:100],
-                        save_loss=TRUE, num_epochs=10)
+                        save_loss=TRUE, epochs=10)
 
           expect_equal(length(mdl$J), 10*nrow(X))
           expect_true(all(mdl$J != 0.0))

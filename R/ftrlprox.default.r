@@ -11,7 +11,7 @@
 #' @param alpha mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.
 #' @param a learning rate parameter.
 #' @param b learning rate parameter controlling decay, defaults to 1.
-#' @param num_epochs number of times we should traverse over the traiing set, defaults to 1.
+#' @param epochs number of times we should traverse over the traiing set, defaults to 1.
 #' @param save_loss is to save the loss function during training.
 #' @param ... additional args
 #' @return ftrlprox model object
@@ -22,7 +22,7 @@
 #' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
-ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
+ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, epochs=1,
                              save_loss=F, ...) {
   if (nrow(x) != length(y))
     stop(sprintf("Input has differing number of rows, nrow(x)=%d, length(y)=%d",
@@ -45,7 +45,7 @@ ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
     x <- as(x,"dgCMatrix")
   }
 
-  J = if (save_loss) numeric(nrow(x)*num_epochs) else numeric(0)
+  J = if (save_loss) numeric(nrow(x)) else numeric(0)
 
   out <- if(is_sparse) {
           .C("splognet_ftrlprox",
@@ -59,7 +59,6 @@ ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
              z=double(ncol(x)),
              nn=double(ncol(x)),
              J=J,
-             num_epochs=as.integer(num_epochs),
              a=as.double(a),
              b=as.double(b),
              lambda1=as.double(alpha*lambda),
@@ -75,7 +74,6 @@ ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
              z=double(ncol(x)),
              nn=double(ncol(x)),
              J=J,
-             num_epochs=as.integer(num_epochs),
              a=as.double(a),
              b=as.double(b),
              lambda1=as.double(alpha*lambda),
@@ -103,6 +101,12 @@ ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
   out$levels <- levels(y)
 
   class(out) <- "ftrlprox"
+
+  while (epochs > 1) {
+          idx <- sample(1:nrow(x))
+          out <- update(out, x[idx, ], y[idx], save_loss=save_loss)
+          epochs <- epochs - 1
+  }
   out
 }
 

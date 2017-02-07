@@ -4,7 +4,7 @@
 \alias{update.ftrlprox}
 \title{Update FTRL Proximal model}
 \usage{
-\method{update}{ftrlprox}(object, newX, newY, num_epochs = 1, save_loss = F,
+\method{update}{ftrlprox}(object, newX, newY, epochs = 1, save_loss = F,
   ...)
 }
 \arguments{
@@ -14,7 +14,7 @@
 
 \item{newY}{new observations}
 
-\item{num_epochs}{number of times we should traverse over the training data, defaults to 1.}
+\item{epochs}{number of times we should traverse over the training data, defaults to 1.}
 
 \item{save_loss}{is to save the loss function during training. This will be appended to previous loss vector.}
 

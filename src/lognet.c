@@ -51,13 +51,12 @@ void lognet_predict(double *X, double *theta, double *yhat, int *m, int *n)
  */
 void lognet_ftrlprox(double *X, double *theta, double *y, int *m, 
                      int *n, double *z, double *nn, double *J,
-                     unsigned int *num_epochs, double *alpha, double *bnn,
+                     double *alpha, double *bnn,
                      double *lambda1, double *lambda2, unsigned int *save_loss)
 
 {
         if (DEBUG)  {
-                printf("num_epochs: %u\n", *num_epochs);
-                printf("num_itr: %u\n", ((*m)*(*num_epochs)));
+                printf("num_itr: %u\n", (*m));
                 print_matrix(X, (*m), (*n));
         }
 
@@ -66,7 +65,7 @@ void lognet_ftrlprox(double *X, double *theta, double *y, int *m,
         double *sig = malloc((*n)*sizeof(double));
         double *x = malloc((*n)*sizeof(double));
 
-        for (int t = 0; t < ((*m)*(*num_epochs)); t++) {
+        for (int t = 0; t < (*m); t++) {
                 node_t *l1 = malloc(sizeof(node_t));
                 l1->next = NULL;
                 node_t *li = l1;
