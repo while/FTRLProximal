@@ -45,7 +45,7 @@ ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
     x <- as(x,"dgCMatrix")
   }
 
-  J = if (save_loss) numeric(nrow(x)*num_epochs) else numeric(0)
+  J = if (save_loss) numeric(nrow(x)) else numeric(0)
 
   out <- if(is_sparse) {
           .C("splognet_ftrlprox",
@@ -59,7 +59,6 @@ ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
              z=double(ncol(x)),
              nn=double(ncol(x)),
              J=J,
-             num_epochs=as.integer(num_epochs),
              a=as.double(a),
              b=as.double(b),
              lambda1=as.double(alpha*lambda),
@@ -75,7 +74,6 @@ ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
              z=double(ncol(x)),
              nn=double(ncol(x)),
              J=J,
-             num_epochs=as.integer(num_epochs),
              a=as.double(a),
              b=as.double(b),
              lambda1=as.double(alpha*lambda),
@@ -103,6 +101,12 @@ ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
   out$levels <- levels(y)
 
   class(out) <- "ftrlprox"
+
+  while (num_epochs > 1) {
+          idx <- sample(1:nrow(x))
+          out <- update(out, x[idx, ], y[idx], save_loss=save_loss)
+          num_epochs <- num_epochs - 1
+  }
   out
 }
 

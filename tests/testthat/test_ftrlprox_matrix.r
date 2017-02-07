@@ -44,8 +44,7 @@ test_that("Saving loss", {
 })
 
 test_that("Saving loss many epochs", {
-          mdl <- ftrlprox(X, dat$y, a=0.3, b=1,
-                          lambda=1, alpha=1,
+          mdl <- ftrlprox(X, dat$y, a=0.3, b=1, lambda=1, alpha=1,
                           save_loss=TRUE, num_epochs=10)
 
           expect_equal(length(mdl$J), 10*nrow(X))
