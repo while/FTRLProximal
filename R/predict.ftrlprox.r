@@ -11,8 +11,8 @@
 #' @param ... additional args
 #' @return an array containing the predictions
 #' 
-#' @author Vilhelm von  Ehrenheim
-#' @useDynLib FTRLProximal
+#' @author Vilhelm von Ehrenheim
+#' @useDynLib FTRLProximal, .registration = TRUE
 #' @export
 ##------------------------------------------------------------------------------
 predict.ftrlprox <- function(object, newdata=NULL, type=c("response", "class"), ...) {

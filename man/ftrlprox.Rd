@@ -18,7 +18,7 @@ ftrlprox model object
 Online elastic net regression using the FTRL Proximal algorithm for training.
 }
 \details{
-This is the generic method. Please look at ftrlprox.matrix and ftrlprox.formula for the model matrix and formula versions respectively.
+This is the generic method. Please look at ftrlprox.default and ftrlprox.formula for the model matrix and formula versions respectively.
 }
 \author{
 Vilhelm von Ehrenheim

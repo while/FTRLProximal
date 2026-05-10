@@ -1,6 +1,8 @@
 #ifndef MATRIX_HELPERS_H
 #define MATRIX_HELPERS_H
 
+#include <stddef.h>
+
 /*
  * Debug use only. Print matrix to stdout
  */

@@ -45,7 +45,7 @@ test_that("Params are 0 for large lambda", {
 test_that("Params are 0 for random factor using some L1 reg", {
           set.seed(1)
           dat2 <- dat
-          dat2$random_alpha <- factor(sample(letters, nrow(dat), T), levels=letters)
+          dat2$random_alpha <- factor(sample(letters, nrow(dat), TRUE), levels=letters)
           mdl <- ftrlprox(classes ~ ., dat2, a = 0.3, lambda = 2, alpha = 1)
           coefs <- coef(mdl)
 

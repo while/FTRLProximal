@@ -4,7 +4,7 @@
 \alias{update.ftrlprox}
 \title{Update FTRL Proximal model}
 \usage{
-\method{update}{ftrlprox}(object, newX, newY, num_epochs = 1, save_loss = F,
+\method{update}{ftrlprox}(object, newX, newY, num_epochs = 1, save_loss = FALSE,
   ...)
 }
 \arguments{

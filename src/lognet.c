@@ -1,7 +1,6 @@
 #include <R.h>
 #include <R_ext/BLAS.h>
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -56,8 +55,8 @@ void lognet_ftrlprox(double *X, double *theta, double *y, int *m,
 
 {
         if (DEBUG)  {
-                printf("num_epochs: %u\n", *num_epochs);
-                printf("num_itr: %u\n", ((*m)*(*num_epochs)));
+                Rprintf("num_epochs: %u\n", *num_epochs);
+                Rprintf("num_itr: %u\n", ((*m)*(*num_epochs)));
                 print_matrix(X, (*m), (*n));
         }
 

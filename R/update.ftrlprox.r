@@ -15,11 +15,11 @@
 #' @author Vilhelm von Ehrenheim
 #'
 #' @method update ftrlprox
-#' @useDynLib FTRLProximal
+#' @useDynLib FTRLProximal, .registration = TRUE
 #' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
-update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=F, ...) {
+update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=FALSE, ...) {
   if (!is.factor(newY))
     stop("Dependent variable must be a factor")
 

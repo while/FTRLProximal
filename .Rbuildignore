@@ -1,5 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
 ^.*\.o$
 ^Makefile$
+^\.github$
+^README\.md$
+^codecov\.yml$

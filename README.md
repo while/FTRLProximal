@@ -1,7 +1,7 @@
 # FTRL Proximal
-[![Build Status](https://travis-ci.org/while/FTRLProximal.svg?branch=master)](https://travis-ci.org/while/FTRLProximal)
-[![codecov](https://codecov.io/github/while/FTRLProximal/branch/master/graphs/badge.svg)](https://codecov.io/github/while/FTRLProximal)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/FTRLProximal)](https://CRAN.R-project.org/package=FTRLProximal)
+[![R-CMD-check](https://github.com/while/FTRLProximal/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/while/FTRLProximal/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/while/FTRLProximal/graph/badge.svg)](https://app.codecov.io/gh/while/FTRLProximal)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/FTRLProximal)](https://CRAN.R-project.org/package=FTRLProximal)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/FTRLProximal)](https://CRAN.R-project.org/package=FTRLProximal)
 
 This is an R package of the FTRL Proximal algorithm for online learning of elastic net logistic regression models.
@@ -60,6 +60,12 @@ mdl <- update(mdl, X, dat$classes)
 For more example please see the documentation.
 
 ## Changelog
+### 0.4
+* Registered native routines and disabled dynamic symbol lookup (required by CRAN since R 3.4).
+* Replaced `printf` with `Rprintf` in the C sources.
+* Bumped minimum R version to 3.5.0.
+* Cleaned up `T`/`F` usage, removed unused `LazyData`, refreshed roxygen docs.
+
 ### 0.3
 * Added prediction type "class".
 

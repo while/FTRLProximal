@@ -5,7 +5,7 @@
 \title{FTRL Proximal formula}
 \usage{
 \method{ftrlprox}{formula}(formula, data, lambda, alpha, a, b = 1,
-  num_epochs = 1, save_loss = F, ...)
+  num_epochs = 1, save_loss = FALSE, ...)
 }
 \arguments{
 \item{formula}{modeling formula}
