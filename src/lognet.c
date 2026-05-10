@@ -1,5 +1,12 @@
+#ifndef USE_FC_LEN_T
+# define USE_FC_LEN_T
+#endif
 #include <R.h>
+#include <Rconfig.h>
 #include <R_ext/BLAS.h>
+#ifndef FCONE
+# define FCONE
+#endif
 
 #include <stdlib.h>
 #include <math.h>
@@ -35,7 +42,7 @@ void lognet_predict(double *X, double *theta, double *yhat, int *m, int *n)
         // Call BLAS riutine for matrix vector multiplication DGEMV
         // computing X*theta saving the result in yhat
         F77_CALL(dgemv)("n", m, n, &a,
-                    X, m, theta, &inc, &b, yhat, &inc);
+                    X, m, theta, &inc, &b, yhat, &inc FCONE);
 
         // Transform result from logodds to prob
         for (int i=0; i < (*m); i++) {
