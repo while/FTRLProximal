@@ -16,6 +16,9 @@
 
 \item{...}{additional args}
 }
+\value{
+Invisibly returns the model object \code{x}.
+}
 \description{
 Print a text represenation of the ftrlprox model.
 }

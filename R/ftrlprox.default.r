@@ -18,12 +18,12 @@
 #' @author Vilhelm von Ehrenheim
 #'
 #' @method ftrlprox default
-#' @useDynLib FTRLProximal
+#' @useDynLib FTRLProximal, .registration = TRUE
 #' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
 ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
-                             save_loss=F, ...) {
+                             save_loss=FALSE, ...) {
   if (nrow(x) != length(y))
     stop(sprintf("Input has differing number of rows, nrow(x)=%d, length(y)=%d",
                  nrow(x), length(y)))

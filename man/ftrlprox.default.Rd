@@ -5,7 +5,7 @@
 \title{FTRL Proximal for matrix class}
 \usage{
 \method{ftrlprox}{default}(x, y, lambda, alpha, a, b = 1, num_epochs = 1,
-  save_loss = F, ...)
+  save_loss = FALSE, ...)
 }
 \arguments{
 \item{x}{the model matrix containing features}

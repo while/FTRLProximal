@@ -16,10 +16,10 @@
 #' @return ftrlprox model object
 #' @author Vilhelm von Ehrenheim
 #'
-#' @useDynLib FTRLProximal
+#' @useDynLib FTRLProximal, .registration = TRUE
 #' @export
 ##------------------------------------------------------------------------------
-initialize.ftrlprox <- function(theta, levels, lambda, alpha, a, b=1, save_loss=F, ...) {
+initialize.ftrlprox <- function(theta, levels, lambda, alpha, a, b=1, save_loss=FALSE, ...) {
 
   n <- length(theta)
 

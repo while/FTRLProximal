@@ -1,7 +1,6 @@
 #include <R.h>
 #include <R_ext/BLAS.h>
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -38,8 +37,8 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
 
 {
         if (DEBUG)  {
-                printf("num_epochs: %u\n", *num_epochs);
-                printf("num_itr: %u\n", ((*m)*(*num_epochs)));
+                Rprintf("num_epochs: %u\n", *num_epochs);
+                Rprintf("num_itr: %u\n", ((*m)*(*num_epochs)));
                 print_matrix(X, (*m), (*n));
         }
 
@@ -72,11 +71,11 @@ void splognet_ftrlprox(double *X, int *ix, int* jx, double *theta, double *y,
                 }
 
                 if (DEBUG) {
-                        printf("x = [");
+                        Rprintf("x = [");
                         for (int i = 0; i < (*n); i++) {
-                                printf(" %.3f ", x[i]);
+                                Rprintf(" %.3f ", x[i]);
                         }
-                        printf("]\n");
+                        Rprintf("]\n");
                 }
 
                 // Loop over non zero indices

@@ -25,6 +25,6 @@ Predict outcome or probability of outcome using a regression model trained
 using the FTRL PRoximal algorithm.
 }
 \author{
-Vilhelm von  Ehrenheim
+Vilhelm von Ehrenheim
 }
 
