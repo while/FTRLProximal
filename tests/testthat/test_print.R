@@ -1,5 +1,4 @@
 library(mlbench)
-context("Test ftrlprox print")
 
 set.seed(1)
 p <- mlbench.2dnormals(1000,2)

@@ -1,5 +1,4 @@
 library(mlbench)
-context("Test ftrlprox prediction")
 
 test_that("Predict on simple model", {
           mdl <- list(theta=c(1, 0.5, -0.5))

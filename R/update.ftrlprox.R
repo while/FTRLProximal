@@ -3,7 +3,7 @@
 #' 
 #' Continue training model on new data
 #'
-#' As FTRL PRoximal is an online algorithm it is possible to continue training the model on new data. This can be good if for for example the size of the dataset is too large to keep in memory or new data is getting available after some time.
+#' As FTRL Proximal is an online algorithm it is possible to continue training the model on new data. This can be good if for example the size of the dataset is too large to keep in memory or new data is getting available after some time.
 #'
 #' @param object the model object
 #' @param newX new feature vectors. This needs to be the same features as used in previous training rounds for this object.
@@ -12,11 +12,8 @@
 #' @param save_loss is to save the loss function during training. This will be appended to previous loss vector.
 #' @param ... additional args
 #' @return ftrlprox model object
-#' @author Vilhelm von Ehrenheim
 #'
 #' @method update ftrlprox
-#' @useDynLib FTRLProximal, .registration = TRUE
-#' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
 update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=FALSE, ...) {

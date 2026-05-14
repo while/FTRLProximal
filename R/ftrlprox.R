@@ -8,9 +8,7 @@
 #' @param x the model matrix containing features
 #' @param ... the rest of the model parameters
 #' @return ftrlprox model object
-#' @author Vilhelm von Ehrenheim
 #'
-#' @useDynLib FTRLProximal, .registration = TRUE
 #' @export
 ##------------------------------------------------------------------------------
 ftrlprox <- function(x, ...) {

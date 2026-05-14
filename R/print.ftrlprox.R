@@ -1,7 +1,7 @@
 ##------------------------------------------------------------------------------
 #' Print a ftrlprox model
 #' 
-#' Print a text represenation of the ftrlprox model.
+#' Print a text representation of the ftrlprox model.
 #' 
 #' @param x The model object to print
 #' @param digits the number of digits display in printout.
@@ -9,8 +9,6 @@
 #' @param ... additional args
 #' @return Invisibly returns the model object \code{x}.
 #'
-#' @author Vilhelm von Ehrenheim
-#' @import Matrix
 #' @export
 #' @method print ftrlprox
 ##------------------------------------------------------------------------------
