@@ -14,7 +14,7 @@ theta <- numeric(3)
 names(theta) <- c("(Intercept)", "A", "B")
 
 # Set up enpty object
-mdl <- initialize.ftrlprox(theta, c("G", "B"), a=0.3, b=1, lambda=0, alpha=0)
+mdl <- ftrlprox_init(theta, c("G", "B"), a=0.3, b=1, lambda=0, alpha=0)
 
 
 test_that("Class is ftrlprox", {
@@ -48,5 +48,18 @@ test_that("Parameter names", {
 
 test_that("Target levels", {
           expect_equal(mdl$levels, c("G", "B"))
+})
+
+
+# -----------------------------------------------------------------------------
+test_that("initialize.ftrlprox is a deprecated alias for ftrlprox_init", {
+          expect_warning(
+            old <- initialize.ftrlprox(theta, c("G", "B"),
+                                       a = 0.3, b = 1, lambda = 0, alpha = 0),
+            "deprecated"
+          )
+          new <- ftrlprox_init(theta, c("G", "B"),
+                               a = 0.3, b = 1, lambda = 0, alpha = 0)
+          expect_equal(old, new)
 })
 
