@@ -3,7 +3,8 @@
 #' 
 #' Online elastic net regression using the FTRL Proximal algorithm for training.
 #'
-#' Test text
+#' This method takes a model formula and a data.frame, builds the model matrix
+#' with \code{\link[stats]{model.matrix}}, and dispatches to the default method.
 #'
 #' @param formula modeling formula
 #' @param data data.frame containing features and dependent variable
@@ -11,13 +12,10 @@
 #' @param alpha mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.
 #' @param a learning rate parameter
 #' @param b learning rate parameter controlling decay, defaults to 1.
-#' @param num_epochs number of times we should traverse over the traiing set, defaults to 1.
+#' @param num_epochs number of times we should traverse over the training set, defaults to 1.
 #' @param save_loss is to save the loss function during training.
 #' @param ... additional args
 #' @return ftrlprox model object
-#' @author Vilhelm von Ehrenheim
-#' @useDynLib FTRLProximal, .registration = TRUE
-#' @importFrom stats model.matrix
 #' @export
 #' 
 #' @examples

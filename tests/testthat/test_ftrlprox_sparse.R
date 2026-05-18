@@ -1,5 +1,4 @@
 library(mlbench)
-context("Test ftrlprox using sparse model matrix")
 
 set.seed(1)
 p <- mlbench.2dnormals(100,2)

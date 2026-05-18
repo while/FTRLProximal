@@ -9,7 +9,7 @@ p <- mlbench.2dnormals(1010,2)
 dat <- data.frame(p$x)
 dat$y <- factor(p$classes)
 
-mdl <- ftrlprox(y ~ ., dat, alpha=1, beta=1,
-                lambda1 = 0, lambda2 = 0)
+mdl <- ftrlprox(y ~ ., dat, a = 0.3, b = 1,
+                lambda = 0, alpha = 1)
 
 coef(mdl)

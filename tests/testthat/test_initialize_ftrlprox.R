@@ -1,5 +1,4 @@
 library(mlbench)
-context("Test initialize and update ftrlprox")
 
 set.seed(1)
 p <- mlbench.2dnormals(100,2)
@@ -13,7 +12,7 @@ X <- model.matrix(y ~ ., dat)
 theta <- numeric(3)
 names(theta) <- c("(Intercept)", "A", "B")
 
-# Set up enpty object
+# Set up empty object
 mdl <- initialize.ftrlprox(theta, c("G", "B"), a=0.3, b=1, lambda=0, alpha=0)
 
 

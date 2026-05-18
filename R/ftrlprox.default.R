@@ -11,15 +11,12 @@
 #' @param alpha mixing parameter, alpha=0 corresponds to L2 regularization and alpha=1 to L1.
 #' @param a learning rate parameter.
 #' @param b learning rate parameter controlling decay, defaults to 1.
-#' @param num_epochs number of times we should traverse over the traiing set, defaults to 1.
+#' @param num_epochs number of times we should traverse over the training set, defaults to 1.
 #' @param save_loss is to save the loss function during training.
 #' @param ... additional args
 #' @return ftrlprox model object
-#' @author Vilhelm von Ehrenheim
 #'
 #' @method ftrlprox default
-#' @useDynLib FTRLProximal, .registration = TRUE
-#' @importFrom methods as
 #' @export
 ##------------------------------------------------------------------------------
 ftrlprox.default <- function(x, y, lambda, alpha, a, b=1, num_epochs=1,
