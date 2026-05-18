@@ -1,6 +1,6 @@
 ##------------------------------------------------------------------------------
 #' Update FTRL Proximal model
-#' 
+#'
 #' Continue training model on new data
 #'
 #' As FTRL PRoximal is an online algorithm it is possible to continue training the model on new data. This can be good if for for example the size of the dataset is too large to keep in memory or new data is getting available after some time.
@@ -20,87 +20,32 @@
 #' @export
 ##------------------------------------------------------------------------------
 update.ftrlprox <- function(object, newX, newY, num_epochs=1, save_loss=FALSE, ...) {
-  if (!is.factor(newY))
-    stop("Dependent variable must be a factor")
+  .validate_response(newY, levels = object$levels)
+  ynum <- as.numeric(newY) - 1
+  newX <- .coerce_features(newX)
 
-  if (nlevels(newY) != 2)
-    stop("Dependent variable must be a factor with 2 levels")
+  out <- .fit_step(x = newX, ynum = ynum,
+                   theta = object$theta, z = object$z, nn = object$nn,
+                   lambda = object$lambda, alpha = object$alpha,
+                   a = object$a, b = object$b,
+                   num_epochs = num_epochs, save_loss = save_loss)
 
-  if (all.equal(levels(newY), object$levels) != TRUE)
-    stop("Dependent variable must have the same levels as original training data")
-
-  # Make factor into numeric 0 and 1
-  ynum <- as.numeric(newY) - 1  
-
-  is_sparse <- FALSE
-  ix <- jx <- NULL
-  if (inherits(newX,"sparseMatrix")) {
-    is_sparse <- TRUE
-    newX <- as(newX,"CsparseMatrix")
-    newX <- as(newX,"dgCMatrix")
-  }
-
-  J = if (save_loss) numeric(nrow(newX)*num_epochs) else numeric(0)
-
-  out <- if(is_sparse) {
-          .C("splognet_ftrlprox",
-             X=as.double(newX@x),
-             ix=as.integer(newX@p),
-             jx=as.integer(newX@i),
-             theta=object$theta,
-             y=as.double(ynum),
-             m=as.integer(nrow(newX)),
-             n=as.integer(ncol(newX)),
-             z=object$z,
-             nn=object$nn,
-             J=J,
-             num_epochs=as.integer(num_epochs),
-             a=as.double(object$a),
-             b=as.double(object$b),
-             lambda1=as.double(object$alpha*object$lambda),
-             lambda2=as.double((1-object$alpha)*object$lambda),
-             save_loss=as.integer(save_loss))
-  } else {
-          .C("lognet_ftrlprox",
-             X=as.double(newX),
-             theta=object$theta,
-             y=as.double(ynum),
-             m=as.integer(nrow(newX)),
-             n=as.integer(ncol(newX)),
-             z=object$z,
-             nn=object$nn,
-             J=J,
-             num_epochs=as.integer(num_epochs),
-             a=as.double(object$a),
-             b=as.double(object$b),
-             lambda1=as.double(object$alpha*object$lambda),
-             lambda2=as.double((1-object$alpha)*object$lambda),
-             save_loss=as.integer(save_loss))
-  }
-
-  # Append loss to old model objects loss
   out$J <- c(object$J, out$J)
 
-  # Remove unnecessary from output
   out$X <- NULL
   out$y <- NULL
   out$m <- NULL
   out$n <- NULL
-  out$save_loss <- NULL
+  out$loss <- NULL
   out$num_epochs <- NULL
 
-  if (is_sparse) {
-      out$ix <- NULL
-      out$jx <- NULL
+  if (inherits(newX, "dgCMatrix")) {
+    out$ix <- NULL
+    out$jx <- NULL
   }
 
-  # Set the feature colnames as parameter names
   names(out$theta) <- colnames(newX)
-
-  # Save target levels
   out$levels <- object$levels
-
-  # Save regularization and mixing params instead of raw lambda values
   out$lambda <- object$lambda
   out$alpha  <- object$alpha
 
